@@ -1,5 +1,6 @@
 #include "vex.h"
 
+/*
 void RotationController::updateSpeed(){
   int dir = -1;
 
@@ -69,3 +70,4 @@ void str8Drive(double &initRPow, double &initLPow, bool fwd, double initLEnc, do
   }
 
 }
+*/

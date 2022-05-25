@@ -52,10 +52,6 @@ int main() {
   task updateOdometry(odometry);
   //task terminal(TerminalDebug);
 
-  FClamp.set(true);
-  BClamp.set(false);
-
-
   // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);

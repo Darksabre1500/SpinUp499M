@@ -16,14 +16,14 @@ motor RFM = motor(PORT6, ratio18_1, false);
 motor RBM = motor(PORT8, ratio18_1, false);
 encoder EncoderL = encoder(Brain.ThreeWirePort.G);
 encoder EncoderR = encoder(Brain.ThreeWirePort.E);
-motor RingConveyor = motor(PORT20, ratio18_1, false);
-digital_out FClamp = digital_out(Brain.ThreeWirePort.A);
-digital_out BClamp = digital_out(Brain.ThreeWirePort.B);
-encoder ArmEncoder = encoder(Brain.ThreeWirePort.C);
-motor ArmMotorA = motor(PORT11, ratio36_1, false);
-motor ArmMotorB = motor(PORT5, ratio36_1, true);
-motor_group Arm = motor_group(ArmMotorA, ArmMotorB);
-distance Distance = distance(PORT15);
+encoder EncoderS = encoder(Brain.ThreeWirePort.C);
+motor Intake = motor(PORT1, ratio18_1, false);
+motor Flicker = motor(PORT3, ratio18_1, false);
+motor Flywheel = motor(PORT4, ratio6_1, false);
+motor VerticalAdjuster = motor(PORT5, ratio36_1, false);
+/*vex-vision-config:begin*/
+vision Vision = vision (PORT7, 50);
+/*vex-vision-config:end*/
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

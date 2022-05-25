@@ -1,5 +1,6 @@
 #include "vex.h"
 
+/*
   void stopMotors(){
     LFM.stop(brake);
     RFM.stop(brake);
@@ -244,4 +245,4 @@ void moveRings(double time, directionType dir, bool threaded){
   }
 }
 
- 
+ */

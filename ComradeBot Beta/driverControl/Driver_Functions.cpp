@@ -1,5 +1,6 @@
 #include "vex.h"
 
+/*
 void drive() {
   int rightPow = numCutoff(Controller1.Axis3.position(pct) - Controller1.Axis1.position(pct), 100); 
   int leftPow = numCutoff(Controller1.Axis3.position(pct) + Controller1.Axis1.position(pct), 100);
@@ -109,4 +110,4 @@ void callAuton(){
     waitUntil(!Competition.isAutonomous());
     called = true;
   }
-}
+} */
