@@ -1,8 +1,8 @@
 #include <math.h>
-#include "General_Functions.h"
+#include "generalFunctions.h"
 
-#ifndef odometryType_h
-#define odometryType_h
+#ifndef odometry_h
+#define odometry_h
 
 //Updater for task
 int odometry();

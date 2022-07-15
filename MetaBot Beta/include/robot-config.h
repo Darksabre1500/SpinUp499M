@@ -6,7 +6,6 @@ using signature = vision::signature;
 
 // VEXcode devices
 extern controller Controller1;
-extern controller Controller2;
 extern motor LFM;
 extern motor LBM;
 extern motor RFM;
@@ -14,10 +13,6 @@ extern motor RBM;
 extern encoder EncoderL;
 extern encoder EncoderR;
 extern encoder EncoderS;
-extern motor Intake;
-extern motor Flicker;
-extern motor Flywheel;
-extern motor VerticalAdjuster;
 extern signature Vision__SIG_1;
 extern signature Vision__SIG_2;
 extern signature Vision__SIG_3;

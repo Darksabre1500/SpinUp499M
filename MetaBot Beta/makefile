@@ -14,7 +14,7 @@ SRC_C += $(wildcard src/*/*.c)
 SRC_C += $(wildcard odometry/*.cpp)
 SRC_C += $(wildcard pid/*.cpp)
 SRC_C += $(wildcard autonomous/*.cpp)
-SRC_C += $(wildcard driverControl/*.cpp)
+SRC_C += $(wildcard driver/*.cpp)
 SRC_C += $(wildcard vision/*.cpp)
 
 OBJ = $(addprefix $(BUILD)/, $(addsuffix .o, $(basename $(SRC_C))) )

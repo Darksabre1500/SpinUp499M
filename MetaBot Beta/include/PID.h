@@ -1,5 +1,5 @@
-#ifndef PIDClass_h
-#define PIDClass_h
+#ifndef PID_h
+#define PID_h
 
 class PIDClass {
 private:

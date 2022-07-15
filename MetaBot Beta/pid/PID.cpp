@@ -1,7 +1,7 @@
 #include "vex.h"
 using namespace std;
 
-PIDClass::PIDClass(double constP){
+/*PIDClass::PIDClass(double constP){
   kP = constP;
   kI = 0;
   kD = 0;
@@ -115,3 +115,5 @@ void PIDClass::fullPrint(){
   cout << "Speed: " << finalSpeed << endl; 
   cout << endl;
 }
+
+*/

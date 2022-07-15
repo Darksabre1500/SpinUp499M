@@ -9,7 +9,6 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-controller Controller2 = controller(partner);
 motor LFM = motor(PORT2, ratio18_1, true);
 motor LBM = motor(PORT19, ratio18_1, true);
 motor RFM = motor(PORT6, ratio18_1, false);
@@ -17,10 +16,6 @@ motor RBM = motor(PORT8, ratio18_1, false);
 encoder EncoderL = encoder(Brain.ThreeWirePort.G);
 encoder EncoderR = encoder(Brain.ThreeWirePort.E);
 encoder EncoderS = encoder(Brain.ThreeWirePort.C);
-motor Intake = motor(PORT1, ratio18_1, false);
-motor Flicker = motor(PORT3, ratio18_1, false);
-motor Flywheel = motor(PORT4, ratio6_1, false);
-motor VerticalAdjuster = motor(PORT5, ratio36_1, false);
 /*vex-vision-config:begin*/
 vision Vision = vision (PORT7, 50);
 /*vex-vision-config:end*/

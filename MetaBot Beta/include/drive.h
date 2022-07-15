@@ -1,5 +1,5 @@
-#ifndef driveType_h
-#define driveType_h
+#ifndef drive_h
+#define drive_h
 
   void drive(); 
   void moveArm();

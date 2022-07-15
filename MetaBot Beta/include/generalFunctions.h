@@ -1,5 +1,5 @@
-#ifndef General_Functions_h
-#define General_Functions_h
+#ifndef generalFunctions_h
+#define generalFunctions_h
 #include "robot-config.h"
 using namespace vex;
 
@@ -7,10 +7,6 @@ using namespace vex;
 enum angleType {RADIANS, DEGREES};
 
 //Functions--------------------------------------------------------------------
-int tempuatureDisplay();
-int brainDebug();
-int controllerDebug();
-int TerminalDebug(); 
 double inToRev(double centimetersTraveled, double wheelDiameter);
 double inToDeg(double centimetersTraveled, double wheelDiameter);
 double degToRev(double degreesTraveled);

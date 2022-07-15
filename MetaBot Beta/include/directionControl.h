@@ -1,5 +1,5 @@
-#ifndef Direction_Control_h
-#define Direction_Control_h
+#ifndef directionControl_h
+#define directionControl_h
 #include "PID.h"
 
 void str8Drive(double &initRPow, double &initLPow, bool fwd, double initLEnc, double initREnc);

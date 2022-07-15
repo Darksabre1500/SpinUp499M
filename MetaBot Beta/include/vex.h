@@ -30,13 +30,14 @@
 #include <cmath>
 #include <iomanip>
 
-#include "driveType.h"
-#include "autonType.h"
+#include "drive.h"
+#include "autonomous.h"
 #include "PID.h"
-#include "odometryType.h"
-#include "General_Functions.h"
-#include "Pure_Pursuit.h"
-#include "Direction_Control.h"
+#include "odometry.h"
+#include "generalFunctions.h"
+#include "purePursuit.h"
+#include "directionControl.h"
+#include "backgroundTasks.h"
 
 //User Added Stuff---------------------------------------------------------------
   extern competition Competition;

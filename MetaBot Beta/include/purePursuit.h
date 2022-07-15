@@ -1,5 +1,5 @@
-#ifndef Pure_Pursuit_h
-#define Pure_Pursuit_h
+#ifndef purePursuit_h
+#define purePursuit_h
 
 double vectorRAngle(double endX, double endY);
 double vectorGAngle(double endX, double endY);
