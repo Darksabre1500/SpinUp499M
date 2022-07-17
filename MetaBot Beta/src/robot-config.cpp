@@ -9,15 +9,15 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-motor LFM = motor(PORT2, ratio18_1, true);
-motor LBM = motor(PORT19, ratio18_1, true);
-motor RFM = motor(PORT6, ratio18_1, false);
-motor RBM = motor(PORT8, ratio18_1, false);
-encoder EncoderL = encoder(Brain.ThreeWirePort.G);
-encoder EncoderR = encoder(Brain.ThreeWirePort.E);
-encoder EncoderS = encoder(Brain.ThreeWirePort.C);
+motor LFM = motor(PORT11, ratio18_1, true);
+motor LBM = motor(PORT15, ratio18_1, true);
+motor RFM = motor(PORT19, ratio18_1, false);
+motor RBM = motor(PORT16, ratio18_1, false);
+encoder EncoderL = encoder(Brain.ThreeWirePort.C);
+encoder EncoderR = encoder(Brain.ThreeWirePort.A);
+encoder EncoderS = encoder(Brain.ThreeWirePort.E);
 /*vex-vision-config:begin*/
-vision Vision = vision (PORT7, 50);
+vision Vision = vision (PORT18, 50);
 /*vex-vision-config:end*/
 
 // VEXcode generated functions
