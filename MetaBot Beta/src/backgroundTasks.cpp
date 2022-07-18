@@ -17,8 +17,7 @@ int tempuatureDisplay() {
     Brain.Screen.print("LBM Temp: %.2f%C", LBM.temperature(celsius));
     Brain.Screen.print(" | RBM Temp: %.2f%C", RBM.temperature(celsius));
     Brain.Screen.setCursor(3, 1);
-    /*Brain.Screen.print("Intake Temp: %.2f%C", Intake.temperature(celsius));
-    Brain.Screen.print(" | Flywheel Temp: %.2f%C", Flywheel.temperature(celsius));*/
+    
     Brain.Screen.setCursor(4, 1);
     Brain.Screen.print("Battery: ");
     Brain.Screen.print("%d", Brain.Battery.capacity());
@@ -54,6 +53,8 @@ int brainDebug() {
     Brain.Screen.setCursor(9, 1);
     Brain.Screen.print("Encoder S: ");      
     Brain.Screen.print("%.2f", EncoderS.rotation(deg));
+    Brain.Screen.setCursor(10, 1);
+    //Brain.Screen.print("Motor Power: %.2f%", LBM.power(watt));
     wait(100, msec);
   }
   return 0;

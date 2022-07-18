@@ -5,6 +5,7 @@
 
   void drive(); 
   void aimbot(colorType goalColor);
+  void brakeWheels();
   void callAuton();
 
 #endif
