@@ -38,6 +38,7 @@
 #include "purePursuit.h"
 #include "directionControl.h"
 #include "backgroundTasks.h"
+#include "vision.h"
 
 //User Added Stuff---------------------------------------------------------------
   extern competition Competition;

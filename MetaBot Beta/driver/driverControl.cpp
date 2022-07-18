@@ -13,5 +13,11 @@
 void usercontrol(void) {
   while (1) {
     drive();
+
+    if (Controller1.ButtonY.pressing()){
+      aimbot(RED);
+    }
+
+    wait(25, msec);
   }
 }

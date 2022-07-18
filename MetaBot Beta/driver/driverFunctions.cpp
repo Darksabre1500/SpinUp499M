@@ -26,6 +26,40 @@ void drive() {
   }
 } 
 
+void aimbot(colorType goalColor){
+  int pos = 0;
+  int pow = 0;
+
+  if (goalColor == RED){
+    pos = redGoalCenter();
+  }
+  else{
+    pos = blueGoalCenter();
+  }
+
+  if (pos > 165){
+    pow = (pos - 158) / 2;
+    LFM.spin(fwd, pow, pct);
+    RFM.spin(reverse, pow, pct);
+    LBM.spin(fwd, pow, pct);
+    RBM.spin(reverse, pow, pct);
+  }
+  else if (pos < 150 && pos > 0) {
+    pow = (157 - pos) / 2;
+    LFM.spin(reverse, pow, pct);
+    RFM.spin(fwd, pow, pct);
+    LBM.spin(reverse, pow, pct);
+    RBM.spin(fwd, pow, pct);
+  }
+  else{
+    LFM.stop(brake);
+    RFM.stop(brake);
+    LBM.stop(brake);
+    RBM.stop(brake);
+  }
+}
+
+
 bool called = false;
 
 void callAuton(){
