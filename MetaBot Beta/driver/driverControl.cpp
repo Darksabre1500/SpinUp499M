@@ -15,9 +15,9 @@ void usercontrol(void) {
     brakeWheels();
     drive();
 
-    //if (Controller1.ButtonB.pressing()){
+    if (Controller1.ButtonA.pressing()){
       aimbot(RED);
-    //}
+    }
 
     wait(25, msec);
   }

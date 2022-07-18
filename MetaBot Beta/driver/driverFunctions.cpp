@@ -31,17 +31,17 @@ void aimbot(colorType goalColor){
 
   if (pos > 163){
     pow = (pos - 158.0) / 2;
-    LFM.spin(fwd, pow, pct);
-    RFM.spin(reverse, pow, pct);
-    LBM.spin(fwd, pow, pct);
-    RBM.spin(reverse, pow, pct);
+    LFM.spin(fwd, numCutoff(jValuesLFM + pow, 100), pct);
+    RFM.spin(fwd, numCutoff(jValuesRFM - pow, 100), pct);
+    LBM.spin(fwd, numCutoff(jValuesLBM + pow, 100), pct);
+    RBM.spin(fwd, numCutoff(jValuesRBM - pow, 100), pct);  
   }
   else if (pos < 152 && pos > 0) {
     pow = (157.0 - pos) / 2;
-    LFM.spin(reverse, pow, pct);
-    RFM.spin(fwd, pow, pct);
-    LBM.spin(reverse, pow, pct);
-    RBM.spin(fwd, pow, pct);
+    LFM.spin(fwd, numCutoff(jValuesLFM - pow, 100), pct);
+    RFM.spin(fwd, numCutoff(jValuesRFM + pow, 100), pct);
+    LBM.spin(fwd, numCutoff(jValuesLBM - pow, 100), pct);
+    RBM.spin(fwd, numCutoff(jValuesRBM + pow, 100), pct);  
   }
 }
 
