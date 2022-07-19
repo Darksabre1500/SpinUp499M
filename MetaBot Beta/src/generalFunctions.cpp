@@ -28,12 +28,12 @@ double numCutoff(double num, double cutoff){
 
 double degToRadians(double deg)
 {
-  return deg * M_PI/180;
+  return deg * (M_PI/180.0);
 }
 
 double radiansToDeg(double radian)
 {
-  return radian * 180/M_PI;
+  return radian * (180.0/M_PI);
 }
 
 double numberDiff(double actual, double target)
@@ -58,7 +58,7 @@ double angleWrap(double angle, angleType aType){
   if (aType == RADIANS)
   { 
     if (angle < 0) 
-      angle = fmod(angle, 2 * M_PI) + 2*M_PI;
+      angle = fmod(angle, 2 * M_PI) + 2 * M_PI;
     else
       angle = fmod(angle, 2 * M_PI);
   }

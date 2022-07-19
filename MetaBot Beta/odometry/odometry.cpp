@@ -11,33 +11,40 @@ void Odometry::updateOdom()
   //Finds distance traveled since last check and converts it to inches
   double L = degToIn(EncoderL.position(deg) - prevL, 2.75);
   double R = degToIn(EncoderR.position(deg) - prevR, 2.75);
+  double S = degToIn(EncoderS.position(deg) - prevS, 2.75);
   //Saves Encoder Values for next check
   prevL = EncoderL.position(deg);
   prevR = EncoderR.position(deg);
+  prevS = EncoderS.position(deg);
 
   //Finds bot's angle of rotation
   double theta = (L-R)/(Wl+Wr);
 
   double dChord;
+  double sChord;
 
   if (theta != 0)
   {
     //Finds vector at the middle of the bot from starting position to ending position
     dChord = 2 * sin(theta/2) * (R/theta + Wr);    
+    sChord = 2 * sin(theta/2) * (S/theta + Ws);
   }
   else 
   {
     //Distance traveled in each direction
     dChord = (L+R)/2;
+    sChord = S;
   }
 
   //Converts vectors to local x and y deltas
   double dlocalX = dChord * sin(botRot + theta/2);
+  double slocalX = sChord * cos(botRot + theta/2);
   double dlocalY = dChord * cos(botRot + theta/2);
+  double slocalY = sChord * sin(botRot + theta/2);
 
   //Adds deltas to previous global coordinates
-  globalX += dlocalX;
-  globalY += dlocalY;
+  globalX += dlocalX + slocalX;
+  globalY += dlocalY + slocalY;
   //Updates angle of rotation
   botRot += theta;
 }

@@ -40,6 +40,7 @@ int brainDebug() {
     Brain.Screen.setCursor(6, 1);
     Brain.Screen.print("Bot Angle: ");
     Brain.Screen.print("%.2f", odom.getAngle(DEGREES));
+    Brain.Screen.print(" | %.5f", odom.getAngle(RADIANS));
     Brain.Screen.setCursor(7, 1);
     Brain.Screen.print("Global X: ");
     Brain.Screen.print("%.2f", odom.getX());
@@ -54,7 +55,6 @@ int brainDebug() {
     Brain.Screen.print("Encoder S: ");      
     Brain.Screen.print("%.2f", EncoderS.rotation(deg));
     Brain.Screen.setCursor(10, 1);
-    //Brain.Screen.print("Motor Power: %.2f%", LBM.power(watt));
     wait(100, msec);
   }
   return 0;
