@@ -35,7 +35,6 @@
 #include "PID.h"
 #include "odometry.h"
 #include "generalFunctions.h"
-#include "purePursuit.h"
 #include "directionControl.h"
 #include "backgroundTasks.h"
 #include "vision.h"

@@ -26,12 +26,12 @@ double numCutoff(double num, double cutoff){
   return num;
 }
 
-double degToRadians(double deg)
+double degToRad(double deg)
 {
   return deg * (M_PI/180.0);
 }
 
-double radiansToDeg(double radian)
+double radToDeg(double radian)
 {
   return radian * (180.0/M_PI);
 }
@@ -49,7 +49,7 @@ double angleDiff(double actual, double target, angleType aType)
 double angleDiffDir(double actual, double target)
 {
   int dir = -1;
-  if(sin(degToRadians(target) - degToRadians(actual)) < 0)
+  if(sin(degToRad(target) - degToRad(actual)) < 0)
     dir = 1;
   return dir * (180 - abs(abs(actual - target) - 180));
 }

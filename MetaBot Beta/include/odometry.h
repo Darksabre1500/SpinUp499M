@@ -14,7 +14,7 @@ private:
   const double Wl = 3.06;
   const double Wr = 3.06;
   const double Ws = 4.69;
-  const double startRot = degToRadians(90);
+  const double startRot = degToRad(90);
   const double startX = 0;
   const double startY = 0;
 

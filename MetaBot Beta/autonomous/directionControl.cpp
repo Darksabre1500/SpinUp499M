@@ -1,73 +1,92 @@
 #include "vex.h"
 
-/*
-void RotationController::updateSpeed(){
-  int dir = -1;
+#include "vex.h"
 
-  RPID.PID(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES));
+double Mfl;
+double Mfr;
+double Mbl;
+double Mbr;
 
-  if(sin(degToRadians(targetAngle) - odom.getAngle(RADIANS)) < 0)
-    dir = 1;
+//https://www.desmos.com/calculator/dadgckbr1z
 
-  lSpeed = dir * RPID.getPow();
-  rSpeed = -dir * RPID.getPow();
-}
+void omniController(double targetAngle, double speed)
+{
+  //T finds Direction to move, R finds how much to prioritize rotation, and S finds speed
+  double T = angleWrap(degToRad(targetAngle) - odom.getAngle(RADIANS), RADIANS);
+  double R = 0;
+  double S = speed/200;
 
-void DriveController::updateSpeed(){
-  TPID.PID(vectorLength(targetX, targetY));
-  if (forward)
-    speed = TPID.getPow();
-  else 
-    speed = -TPID.getPow();
-}
+  //Power of each diagonal
+  double P1 = -cos(T + (M_PI/4));
+  double P2 = sin(T + (M_PI/4));
 
-DriveController::DriveController(double targetX, double targetY, PIDClass &PID1){
-  this->targetX = targetX;
-  this->targetY = targetY;
-  forward = true;
-  TPID = PID1;
-}
+  //Ratio for speed
+  double Sr = std::max(std::abs(P1), std::abs(P2)) / S;
 
-DriveController::DriveController(double targetX, double targetY, PIDClass &PID1, bool forward){
-  this->targetX = targetX;
-  this->targetY = targetY;
-  this->forward = forward;
-  TPID = PID1;
-}
+  //Motor power calculations
+  Mfl = P2/Sr * (1-std::abs(R)) + R*S;
+  Mfr = P1/Sr * (1-std::abs(R)) - R*S;
+  Mbl = P1/Sr * (1-std::abs(R)) + R*S;
+  Mbr = P2/Sr * (1-std::abs(R)) - R*S;
 
-void str8Drive(double &initRPow, double &initLPow, bool fwd, double initLEnc, double initREnc){
-  //Bigger this is, the slower the motor will go
-  PIDClass PID(0.004);
-  double edited;
-
-  if (fwd){
-    if (EncoderL.rotation(deg) - initLEnc > EncoderR.rotation(deg) - initREnc){
-      PID.PID(EncoderL.rotation(deg) - EncoderR.rotation(deg), 0, 1);
-      edited = initLPow * (1 - PID.getPow());
-      std::cout << "InitL: " << initLPow << " PID: " << PID.getPow() << " Final: " << edited << std::endl;
-      initLPow = edited;
-    }
-    else if (EncoderL.rotation(deg) - initLPow < EncoderR.rotation(deg) - initREnc){
-      PID.PID(EncoderR.rotation(deg) - EncoderL.rotation(deg), 0, 1);
-      edited = initRPow * (1 - PID.getPow());
-      std::cout << "InitR: " << initRPow << " PID: " << PID.getPow() << "Final: " << edited << std::endl;
-      initRPow = edited;
-    }
-  }
-  else {
-    if (EncoderL.rotation(deg) - initLEnc < EncoderR.rotation(deg) - initREnc){
-      PID.PID(EncoderL.rotation(deg) - EncoderR.rotation(deg), 0, 1);
-      edited = initLPow * (1 + PID.getPow());
-      std::cout << "InitL: " << initLPow << " PID: " << PID.getPow() << " Final: " << edited << std::endl;
-      initLPow = edited;
-    }
-    else if (EncoderL.rotation(deg) - initLEnc > EncoderR.rotation(deg) - initREnc){
-      PID.PID(EncoderR.rotation(deg) - EncoderL.rotation(deg), 0, 1);
-      edited = initRPow * (1 + PID.getPow());
-      std::cout << "InitR: " << initRPow << " PID: " << PID.getPow() << "Final: " << edited << std::endl;
-      initRPow = edited;
-    }
-  }
+  //Scales power for motor rpm
+  Mfl *= 200;
+  Mfr *= 200;
+  Mbl *= 200;
+  Mbr *= 200;
 
 }
-*/
+
+double turnDistance(double targetAngle)
+{
+  //Positive is counterclockwise, negative is clockwise
+  double dir = 1;
+  if(sin(degToRad(targetAngle) - odom.getAngle(RADIANS)) < 0)
+    dir = -1;
+    
+  return dir * angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES);
+}
+
+//https://www.youtube.com/watch?v=3l7ZNJ21wMo
+
+double vectorRAngle(double endX, double endY)
+{
+  double gAngle = vectorGAngle(endX, endY);
+  //Finds angle from 0 - 2pi of the bot angle from the vector angle
+  double relativeAngle = angleWrap(gAngle - odom.getAngle(RADIANS), RADIANS);
+
+  return relativeAngle;
+}
+
+double vectorGAngle(double endX, double endY)
+{
+  //Finds X and Y difference from start to target
+  double vectorX = endX-odom.getX();
+  double vectorY = endY-odom.getY();
+
+  //Finds angle from 0 - 2pi of the vector from 0 (right on the x-axis)
+  double vectorGlobalAngle = angleWrap(atan2(vectorY, vectorX), RADIANS);
+
+  return vectorGlobalAngle;
+}
+
+
+double vectorLength(double endX, double endY)
+{
+  //Finds X and Y difference from start to target
+  double vectorX = endX-odom.getX();
+  double vectorY = endY-odom.getY();
+  
+  //Finds length of the vector
+  double vectorL = hypot(vectorX, vectorY);
+
+  return vectorL;
+}
+
+double coordFinderX(double distance, double angle){
+  return odom.getX() + (distance * cos(angle)); 
+}
+
+double coordFinderY(double distance, double angle){
+  return odom.getY() + (distance * sin(angle)); 
+}

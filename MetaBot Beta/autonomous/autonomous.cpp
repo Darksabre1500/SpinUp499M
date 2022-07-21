@@ -10,12 +10,6 @@
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-/*
-Flipper Vals : -14 rev from purpendicular line start
-1.25 for picking back up
-
-*/
-
 void autonomous(void) {
 
 } 

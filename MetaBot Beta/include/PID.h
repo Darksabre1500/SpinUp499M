@@ -20,15 +20,12 @@ private:
 
 public: 
   void PID(double error);
-  void PID(double error, double iLimit);
-  void PID(double error, double iLimit, double powLimit);
+  void PID(double error, double powLimit);
+  void PID(double error, double powLimit, double iLimit);
 
-  PIDClass(){}
   PIDClass(double constP);
   PIDClass(double constP, double constI);
   PIDClass(double constP, double constI, double constD);
-
-  void editConstants(double constP, double constI, double constD);
 
   double getPow(){
     return finalSpeed;

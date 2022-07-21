@@ -1,7 +1,7 @@
 #include "vex.h"
 using namespace std;
 
-/*PIDClass::PIDClass(double constP){
+PIDClass::PIDClass(double constP){
   kP = constP;
   kI = 0;
   kD = 0;
@@ -19,46 +19,15 @@ PIDClass::PIDClass(double constP, double constI, double constD){
   kD = constD;
 }
 
-void PIDClass::editConstants(double constP, double constI, double constD){
-  kP = constP;
-  kI = constI;
-  kD = constD;
-}
-
-void PIDClass::PID(double error) 
+void PIDClass::PID(double error, double powLimit) 
 {
-  double maxValue = 200;
-
-  proportional = error;
-
-	//Calculate the derivative by finding the change between the current error and
-	//last update's error
-	derivative = error - previous_error;
-
-  //Save the previous error for the derivative
-	previous_error = error;
-
-	//Combine all the parts of the PID function into the PID algorithm and return the value.
-  proportionalFinal = kP * proportional;
-  derivativeFinal = kD * derivative;
-
-  finalSpeed = numCutoff(proportionalFinal + derivativeFinal, maxValue);
-}
-
-void PIDClass::PID(double error, double iLimit) 
-{
-  double maxValue = 200;
+  double maxValue = powLimit;
 
   proportional = error;
 
 	//Begin summing the errors into the integral term if the error is below a threshold,
 	//and reset it if not. This is to prevent the integral from growing too large.
-	if(error < iLimit) {
 		integral += error;
-	}
-	else {
-		integral = 0;
-	}
 
 	//Calculate the derivative by finding the change between the current error and
 	//last update's error
@@ -75,7 +44,7 @@ void PIDClass::PID(double error, double iLimit)
   finalSpeed = numCutoff(proportionalFinal + integralFinal + derivativeFinal, maxValue);
 }
 
-void PIDClass::PID(double error, double iLimit, double powLimit) 
+void PIDClass::PID(double error, double powLimit, double iLimit) 
 {
   double maxValue = powLimit;
 
@@ -115,5 +84,3 @@ void PIDClass::fullPrint(){
   cout << "Speed: " << finalSpeed << endl; 
   cout << endl;
 }
-
-*/
