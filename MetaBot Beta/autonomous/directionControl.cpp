@@ -14,7 +14,7 @@ void omniController(double targetAngle, double speed)
   //T finds Direction to move, R finds how much to prioritize rotation, and S finds speed
   double T = angleWrap(degToRad(targetAngle) - odom.getAngle(RADIANS), RADIANS);
   double R = 0;
-  double S = speed/200;
+  double S = numCutoff(speed/200, 1);
 
   //Power of each diagonal
   double P1 = -cos(T + (M_PI/4));

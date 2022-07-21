@@ -54,7 +54,7 @@ void Odometry::updateAngle()
   //Converts angle to have 0 on the x-axis and have counterclockwise be positive
   angleRadUnwrapped = -(botRot - startRot);
   angleRad = angleWrap(angleRadUnwrapped, RADIANS);
-  angleDeg = radiansToDeg(angleRad);
+  angleDeg = radToDeg(angleRad);
 }
 
 int odometry(){

@@ -19,7 +19,6 @@ private:
   double finalSpeed = 0;
 
 public: 
-  void PID(double error);
   void PID(double error, double powLimit);
   void PID(double error, double powLimit, double iLimit);
 
