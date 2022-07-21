@@ -50,7 +50,6 @@ int main() {
   task brainTB(brainDebug);
   task controllerTB(controllerDebug);
   task updateOdometry(odometry);
-  //task terminal(TerminalDebug);
 
   // Prevent main from exiting with an infinite loop.
   while (true) {

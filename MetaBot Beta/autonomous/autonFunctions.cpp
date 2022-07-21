@@ -67,3 +67,53 @@ void turnTo(double targetAngle, double timeout)
   }
   stopMotors();
 }
+
+
+//This function turns the bot to the specified goal.
+//If the goal is not in sight, it will turn the direction specified until it finds the goal.
+void turnToGoal(colorType goalColor, turnType direction, double timeout)
+{
+  TimeoutClock timer;
+  PIDClass Speed(0.75);
+  int pos;
+  directionType dir = fwd;
+  if (direction == right)
+    dir = reverse;
+
+  do{
+    if (goalColor == RED){
+      pos = redGoalCenter() - 158;
+      if(redGoalCenter() == -1){
+        LFM.spin(dir, -200, rpm);
+        RFM.spin(dir, 200, rpm);
+        LBM.spin(dir, -200, rpm);
+        RBM.spin(dir, 200, rpm);
+        continue;
+      }
+    }
+    else{
+      pos = blueGoalCenter() - 158;
+      if(blueGoalCenter() == -1){
+        LFM.spin(dir, -200, rpm);
+        RFM.spin(dir, 200, rpm);
+        LBM.spin(dir, -200, rpm);
+        RBM.spin(dir, 200, rpm);
+        continue;
+      }
+    }
+    
+    Speed.PID(pos, 200);
+    LFM.spin(reverse, Speed.getPow(), rpm);
+    RFM.spin(reverse, Speed.getPow(), rpm);
+    LBM.spin(fwd, Speed.getPow(), rpm);
+    RBM.spin(fwd, Speed.getPow(), rpm);
+
+    if (timer.getTime() > timeout)
+      break;
+
+    wait(5, msec);
+
+  } while(pos > 2 || pos < -2);
+  
+  stopMotors();
+}
