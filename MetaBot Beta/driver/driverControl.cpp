@@ -14,10 +14,11 @@ void usercontrol(void) {
   while (1) {
     brakeWheels();
     drive();
+    intake();
 
-    if (Controller1.ButtonA.pressing()){
-      aimbot(RED);
-    }
+    /*if (Controller1.ButtonA.pressing()){
+      aimbot(BLUE);
+    }*/
 
     wait(25, msec);
   }

@@ -7,5 +7,6 @@
   void aimbot(colorType goalColor);
   void brakeWheels();
   void callAuton();
+  void intake();
 
 #endif

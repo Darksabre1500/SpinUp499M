@@ -64,3 +64,15 @@ void callAuton(){
     called = true;
   }
 } 
+
+void intake(){
+  if (Controller1.ButtonR1.pressing()){
+    Intake.spin(fwd, 100, pct);
+  }
+  else if (Controller1.ButtonR2.pressing()) {
+    Intake.spin(reverse, 100, pct);
+  }
+  else {
+    Intake.stop(coast);
+  }
+}
