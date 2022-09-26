@@ -55,13 +55,13 @@ void brakeWheels() {
 }
 
 
-bool called = false;
+bool autonCalled = false;
 
 void callAuton(){
-  if (Controller1.ButtonDown.pressing() && !called){
+  if (Controller1.ButtonDown.pressing() && !autonCalled){
     autonomous();
     waitUntil(!Competition.isAutonomous());
-    called = true;
+    autonCalled = true;
   }
 } 
 
@@ -74,5 +74,22 @@ void intake(){
   }
   else {
     Intake.stop(coast);
+  }
+}
+
+bool flywheelActive = false;
+
+void flywheel(){
+  if (Controller1.ButtonL1.pressing() && !flywheelActive){
+    Flywheel1.spin(fwd, 90, pct);
+    Flywheel2.spin(fwd, 90, pct);
+    waitUntil(!Controller1.ButtonL1.pressing());
+    flywheelActive = true;
+  }
+  else if (Controller1.ButtonL1.pressing() && flywheelActive) {
+    Flywheel1.stop(coast);
+    Flywheel2.stop(coast);
+    waitUntil(!Controller1.ButtonL1.pressing());
+    flywheelActive = false;
   }
 }

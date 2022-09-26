@@ -15,6 +15,7 @@ void usercontrol(void) {
     brakeWheels();
     drive();
     intake();
+    flywheel();
 
     /*if (Controller1.ButtonA.pressing()){
       aimbot(BLUE);

@@ -22,6 +22,8 @@ signature Vision__BLUEGOAL = signature (2, -2667, -1837, -2252, 5009, 7089, 6050
 vision Vision = vision (PORT18, 50, Vision__REDGOAL, Vision__BLUEGOAL);
 /*vex-vision-config:end*/
 motor Intake = motor(PORT11, ratio6_1, false);
+motor Flywheel1 = motor(PORT14, ratio6_1, true);
+motor Flywheel2 = motor(PORT16, ratio6_1, true);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

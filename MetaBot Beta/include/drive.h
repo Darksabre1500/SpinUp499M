@@ -8,5 +8,6 @@
   void brakeWheels();
   void callAuton();
   void intake();
+  void flywheel();
 
 #endif
