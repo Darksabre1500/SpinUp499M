@@ -8,6 +8,7 @@
   void brakeWheels();
   void callAuton();
   void intake();
-  void flywheel();
+  int flywheel();
+  int flicker();
 
 #endif

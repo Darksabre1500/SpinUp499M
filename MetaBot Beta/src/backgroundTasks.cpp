@@ -53,7 +53,7 @@ int brainDebug() {
     Brain.Screen.print("%.2f", EncoderR.rotation(deg));
     Brain.Screen.setCursor(9, 1);
     Brain.Screen.print("Encoder S: ");      
-    Brain.Screen.print("%.2f", EncoderS.rotation(deg));
+    Brain.Screen.print("%.2f", EncoderS.position(deg));
     Brain.Screen.setCursor(10, 1);
     wait(100, msec);
   }

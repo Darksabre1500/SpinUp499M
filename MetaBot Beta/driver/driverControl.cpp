@@ -15,12 +15,13 @@ void usercontrol(void) {
     brakeWheels();
     drive();
     intake();
-    flywheel();
+    task fly(flywheel);
+    task flick(flicker);
 
     /*if (Controller1.ButtonA.pressing()){
       aimbot(BLUE);
     }*/
 
-    wait(25, msec);
+    wait(5, msec);
   }
 }

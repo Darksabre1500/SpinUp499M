@@ -67,19 +67,22 @@ void callAuton(){
 
 void intake(){
   if (Controller1.ButtonR1.pressing()){
-    Intake.spin(fwd, 100, pct);
+    Intake1.spin(fwd, 100, pct);
+    Intake2.spin(fwd, 100, pct);
   }
   else if (Controller1.ButtonR2.pressing()) {
-    Intake.spin(reverse, 100, pct);
+    Intake1.spin(reverse, 100, pct);
+    Intake2.spin(reverse, 100, pct);
   }
   else {
-    Intake.stop(coast);
+    Intake1.stop(coast);
+    Intake2.stop(coast);
   }
 }
 
 bool flywheelActive = false;
 
-void flywheel(){
+int flywheel(){
   if (Controller1.ButtonL1.pressing() && !flywheelActive){
     Flywheel1.spin(fwd, 90, pct);
     Flywheel2.spin(fwd, 90, pct);
@@ -92,4 +95,14 @@ void flywheel(){
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = false;
   }
+  return 0;
+}
+
+int flicker(){
+  if (Controller1.ButtonL2.pressing()){
+    Flicker.set(true);
+    wait(0.5, sec);
+    Flicker.set(false);
+  }
+  return 0;
 }

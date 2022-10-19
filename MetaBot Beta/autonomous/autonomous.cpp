@@ -12,4 +12,6 @@
 
 void autonomous(void) {
 
+  goTo(5, 5, 5, RELATIVE);
+
 } 

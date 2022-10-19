@@ -51,6 +51,8 @@ int main() {
   task controllerTB(controllerDebug);
   task updateOdometry(odometry);
 
+  Flicker.set(false);
+
   // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
