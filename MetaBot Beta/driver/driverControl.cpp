@@ -15,8 +15,8 @@ void usercontrol(void) {
     brakeWheels();
     drive();
     intake();
-    task fly(flywheel);
-    task flick(flicker);
+    flywheel();
+    flicker();
 
     /*if (Controller1.ButtonA.pressing()){
       aimbot(BLUE);

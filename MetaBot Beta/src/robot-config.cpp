@@ -13,7 +13,7 @@ motor LFM = motor(PORT17, ratio18_1, true);
 motor LBM = motor(PORT10, ratio18_1, false);
 motor RFM = motor(PORT11, ratio18_1, false);
 motor RBM = motor(PORT1, ratio18_1, true);
-encoder EncoderL = encoder(Brain.ThreeWirePort.C);
+encoder EncoderL = encoder(Brain.ThreeWirePort.G);
 encoder EncoderR = encoder(Brain.ThreeWirePort.E);
 /*vex-vision-config:begin*/
 signature Vision__REDGOAL = signature (1, 5401, 8037, 6720, -1391, -435, -912, 2.5, 0);
@@ -25,7 +25,7 @@ motor Flywheel1 = motor(PORT14, ratio6_1, true);
 motor Flywheel2 = motor(PORT16, ratio6_1, true);
 motor Intake2 = motor(PORT6, ratio18_1, false);
 digital_out Flicker = digital_out(Brain.ThreeWirePort.A);
-rotation EncoderS = rotation(PORT9, false);
+rotation EncoderS = rotation(PORT20, true);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

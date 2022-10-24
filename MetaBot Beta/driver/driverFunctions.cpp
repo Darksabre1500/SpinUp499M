@@ -81,11 +81,19 @@ void intake(){
 }
 
 bool flywheelActive = false;
+int flywheelPower = 70;
 
 int flywheel(){
+  if (Controller1.ButtonUp.pressing()){
+    flywheelPower = 90;
+  }
+  else if (Controller1.ButtonDown.pressing()) {
+    flywheelPower = 70;
+  }
+
   if (Controller1.ButtonL1.pressing() && !flywheelActive){
-    Flywheel1.spin(fwd, 90, pct);
-    Flywheel2.spin(fwd, 90, pct);
+    Flywheel1.spin(fwd, flywheelPower, pct);
+    Flywheel2.spin(fwd, flywheelPower, pct);
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = true;
   }
@@ -95,13 +103,16 @@ int flywheel(){
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = false;
   }
+
+
+
   return 0;
 }
 
 int flicker(){
-  if (Controller1.ButtonL2.pressing()){
+  if (Controller1.ButtonL2.pressing() && flywheelActive){
     Flicker.set(true);
-    wait(0.5, sec);
+    wait(0.02, sec);
     Flicker.set(false);
   }
   return 0;

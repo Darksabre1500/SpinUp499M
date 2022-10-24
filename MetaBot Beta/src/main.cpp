@@ -52,6 +52,9 @@ int main() {
   task updateOdometry(odometry);
 
   Flicker.set(false);
+  EncoderL.resetRotation();
+  EncoderR.resetRotation();
+  EncoderS.resetPosition();
 
   // Prevent main from exiting with an infinite loop.
   while (true) {
