@@ -84,16 +84,29 @@ bool flywheelActive = false;
 int flywheelPower = 70;
 
 int flywheel(){
-  if (Controller1.ButtonUp.pressing()){
-    flywheelPower = 90;
+  //Change Power 
+  if (Controller1.ButtonUp.pressing() && flywheelActive){
+    flywheelPower = 480;
+    Flywheel1.spin(fwd, flywheelPower, rpm);
+    Flywheel2.spin(fwd, flywheelPower, rpm);
   }
-  else if (Controller1.ButtonDown.pressing()) {
-    flywheelPower = 70;
+  else if (Controller1.ButtonUp.pressing() && !flywheelActive) {
+    flywheelPower = 480;
+  }
+  else if (Controller1.ButtonDown.pressing() && flywheelActive) {
+    flywheelPower = 420;
+    Flywheel1.spin(fwd, flywheelPower, rpm);
+    Flywheel2.spin(fwd, flywheelPower, rpm);
+  }
+  else if (Controller1.ButtonDown.pressing() && !flywheelActive) {
+    flywheelPower = 420;
   }
 
+  //Start Flywheel
+
   if (Controller1.ButtonL1.pressing() && !flywheelActive){
-    Flywheel1.spin(fwd, flywheelPower, pct);
-    Flywheel2.spin(fwd, flywheelPower, pct);
+    Flywheel1.spin(fwd, flywheelPower, rpm);
+    Flywheel2.spin(fwd, flywheelPower, rpm);
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = true;
   }
@@ -103,8 +116,6 @@ int flywheel(){
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = false;
   }
-
-
 
   return 0;
 }

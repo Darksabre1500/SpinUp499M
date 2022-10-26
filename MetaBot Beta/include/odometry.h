@@ -11,8 +11,8 @@ int odometry();
 class Odometry{
 private:
   //Starting conditions
-  const double Wl = 2.13;
-  const double Wr = 2.13;
+  const double Wl = 1.945;
+  const double Wr = 1.945;
   const double Ws = 4.25;
   const double startRot = degToRad(90);
   const double startX = 0;
