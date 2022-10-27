@@ -17,11 +17,15 @@ int tempuatureDisplay() {
     Brain.Screen.print("LBM Temp: %.2f%C", LBM.temperature(celsius));
     Brain.Screen.print(" | RBM Temp: %.2f%C", RBM.temperature(celsius));
     Brain.Screen.setCursor(3, 1);
-    
+    Brain.Screen.print("Intake1 Temp: %.2f%C", Intake1.temperature(celsius));
+    Brain.Screen.print(" | Intake2 Temp: %.2f%C", Intake2.temperature(celsius));
     Brain.Screen.setCursor(4, 1);
+    Brain.Screen.print("Flywheel1 Temp: %.2f%C", Intake1.temperature(celsius));
+    Brain.Screen.print(" | Flywheel2 Temp: %.2f%C", Intake2.temperature(celsius));
+    Brain.Screen.setCursor(5, 1);
     Brain.Screen.print("Battery: ");
     Brain.Screen.print("%d", Brain.Battery.capacity());
-    Brain.Screen.setCursor(5, 1);
+    Brain.Screen.setCursor(6, 1);
     Brain.Screen.print("------------------------------------------------");
     wait(5, sec);
   }
@@ -37,24 +41,24 @@ int brainDebug() {
     Brain.Screen.clearLine(10);
     Brain.Screen.clearLine(11);
     Brain.Screen.clearLine(12);
-    Brain.Screen.setCursor(6, 1);
+    Brain.Screen.setCursor(7, 1);
     Brain.Screen.print("Bot Angle: ");
     Brain.Screen.print("%.2f", odom.getAngle(DEGREES));
     Brain.Screen.print(" | %.5f", odom.getAngle(RADIANS));
-    Brain.Screen.setCursor(7, 1);
+    Brain.Screen.setCursor(8, 1);
     Brain.Screen.print("Global X: ");
     Brain.Screen.print("%.2f", odom.getX());
     Brain.Screen.print(" | Global Y: ");
     Brain.Screen.print("%.2f", odom.getY());
-    Brain.Screen.setCursor(8, 1);
+    Brain.Screen.setCursor(9, 1);
     Brain.Screen.print("Encoder L: ");
     Brain.Screen.print("%.2f", EncoderL.rotation(deg));
     Brain.Screen.print(" | Encoder R: ");
     Brain.Screen.print("%.2f", EncoderR.rotation(deg));
-    Brain.Screen.setCursor(9, 1);
+    Brain.Screen.setCursor(10, 1);
     Brain.Screen.print("Encoder S: ");      
     Brain.Screen.print("%.2f", EncoderS.position(deg));
-    Brain.Screen.setCursor(10, 1);
+    Brain.Screen.setCursor(11, 1);
     wait(100, msec);
   }
   return 0;

@@ -117,3 +117,31 @@ void turnToGoal(colorType goalColor, turnType direction, double timeout)
   
   stopMotors();
 }
+
+void intake(bool turnOn){
+  if (turnOn){
+    Intake1.spin(fwd, 100, pct);
+    Intake2.spin(fwd, 100, pct);
+  }
+  else {
+    Intake1.stop(coast);
+    Intake2.stop(coast);
+  }
+}
+
+void flywheel(bool turOn, int pow){
+  if (turOn){
+    Flywheel1.spin(fwd, pow, rpm);
+    Flywheel2.spin(fwd, pow, rpm);
+  }
+  else {
+    Flywheel1.stop(coast);
+    Flywheel2.stop(coast);
+  }
+}
+
+void shootDisk(){
+  Flicker.set(true);
+  wait(0.02, sec);
+  Flicker.set(false);
+}

@@ -81,17 +81,17 @@ void intake(){
 }
 
 bool flywheelActive = false;
-int flywheelPower = 70;
+int flywheelPower = 500;
 
 int flywheel(){
   //Change Power 
   if (Controller1.ButtonUp.pressing() && flywheelActive){
-    flywheelPower = 480;
+    flywheelPower = 500;
     Flywheel1.spin(fwd, flywheelPower, rpm);
     Flywheel2.spin(fwd, flywheelPower, rpm);
   }
   else if (Controller1.ButtonUp.pressing() && !flywheelActive) {
-    flywheelPower = 480;
+    flywheelPower = 500;
   }
   else if (Controller1.ButtonDown.pressing() && flywheelActive) {
     flywheelPower = 420;
@@ -100,6 +100,14 @@ int flywheel(){
   }
   else if (Controller1.ButtonDown.pressing() && !flywheelActive) {
     flywheelPower = 420;
+  }
+  else if (Controller1.ButtonLeft.pressing() && flywheelActive) {
+    flywheelPower = 460;
+    Flywheel1.spin(fwd, flywheelPower, rpm);
+    Flywheel2.spin(fwd, flywheelPower, rpm);
+  }
+  else if (Controller1.ButtonLeft.pressing() && !flywheelActive) {
+    flywheelPower = 460;
   }
 
   //Start Flywheel
