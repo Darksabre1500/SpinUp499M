@@ -1,39 +1,3 @@
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// LFM                  motor         17              
-// LBM                  motor         10              
-// RFM                  motor         11              
-// RBM                  motor         1               
-// EncoderL             encoder       G, H            
-// EncoderR             encoder       E, F            
-// Vision               vision        18              
-// Intake1              motor         5               
-// Flywheel1            motor         14              
-// Flywheel2            motor         16              
-// Intake2              motor         6               
-// Flicker              digital_out   A               
-// EncoderS             rotation      20              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// LFM                  motor         17              
-// LBM                  motor         10              
-// RFM                  motor         11              
-// RBM                  motor         1               
-// EncoderL             encoder       G, H            
-// EncoderR             encoder       E, F            
-// Vision               vision        18              
-// Intake1              motor         5               
-// Flywheel1            motor         14              
-// Flywheel2            motor         16              
-// Intake2              motor         6               
-// Flicker              digital_out   B               
-// EncoderS             rotation      20              
-// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
