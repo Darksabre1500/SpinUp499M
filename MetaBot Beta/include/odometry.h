@@ -14,7 +14,7 @@ private:
   const double Wl = 1.945;
   const double Wr = 1.945;
   const double Ws = 4.25;
-  const double startRot = degToRad(90);
+  const double startRot = degToRad(90); //Add 11.7 degrees for starting angle in auton, test this
   const double startX = 0;
   const double startY = 0;
 
