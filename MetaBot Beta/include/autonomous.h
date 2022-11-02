@@ -10,7 +10,7 @@ using namespace vex;
   void goTo(double target_X, double target_Y, double timeout, coordType coordinates);
   void turnTo(double target_angle, double timeout);
   void turnToGoal(colorType goalColor, turnType direction, double timeout);
-  void intake(bool turnOn);
+  void intake(bool turnOn, directionType dir);
   void flywheel(bool turOn, int pow);
   void shootDisk();
 

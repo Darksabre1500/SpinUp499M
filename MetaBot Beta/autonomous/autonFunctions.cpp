@@ -118,10 +118,10 @@ void turnToGoal(colorType goalColor, turnType direction, double timeout)
   stopMotors();
 }
 
-void intake(bool turnOn){
+void intake(bool turnOn, directionType dir){
   if (turnOn){
-    Intake1.spin(fwd, 100, pct);
-    Intake2.spin(fwd, 100, pct);
+    Intake1.spin(dir, 100, pct);
+    Intake2.spin(dir, 100, pct);
   }
   else {
     Intake1.stop(coast);

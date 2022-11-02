@@ -11,7 +11,10 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-
-  goTo(5, 5, 5, RELATIVE);
+  flywheel(true, 490);
+  wait(1.5, sec);
+  shootDisk();
+  goTo(0, 12, 2, RELATIVE);
+  turnTo(165, 2);
 
 } 
