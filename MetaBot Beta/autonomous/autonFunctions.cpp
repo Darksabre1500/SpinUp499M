@@ -52,13 +52,13 @@ void turnTo(double targetAngle, double timeout)
   while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 3)
   {
     //Update PID Controller
-    Speed.PID(turnDistance(targetAngle), 200);
+    //Speed.PID(turnDistance(targetAngle), 200); 
 
     
-    LFM.spin(reverse, Speed.getPow(), rpm);
-    LBM.spin(reverse, Speed.getPow(), rpm);
-    RFM.spin(fwd, Speed.getPow(), rpm);
-    RBM.spin(fwd, Speed.getPow(), rpm);
+    LFM.spin(reverse, /*Speed.getPow()*/200, rpm);
+    LBM.spin(reverse, /*Speed.getPow()*/200, rpm);
+    RFM.spin(fwd, /*Speed.getPow()*/200, rpm);
+    RBM.spin(fwd, /*Speed.getPow()*/200, rpm);
 
     if (timer.getTime() > timeout)
       break;
@@ -142,6 +142,48 @@ void flywheel(bool turOn, int pow){
 
 void shootDisk(){
   Flicker.set(true);
-  wait(0.02, sec);
+  wait(0.125, sec);
   Flicker.set(false);
+}
+
+void moveForward(double inches, double timeout){
+  double init = degToIn(EncoderL.position(deg), 2.75);
+  TimeoutClock timer;
+
+  while(degToIn(EncoderL.position(deg), 2.75) - init < inches)
+  {    
+    LFM.spin(fwd, 200, rpm);
+    LBM.spin(fwd, 200, rpm);
+    RFM.spin(fwd, 200, rpm);
+    RBM.spin(fwd, 200, rpm);
+
+    if (timer.getTime() > timeout){
+      stopMotors();
+      return;
+    }
+
+    wait(5, msec);
+  }
+  stopMotors();
+}
+
+void strafeRight(double inches, double timeout){
+  double init = degToIn(EncoderS.position(deg), 2.75);
+  TimeoutClock timer;
+
+  while(degToIn(EncoderS.position(deg), 2.75) - init < inches)
+  {    
+    LFM.spin(fwd, 200, rpm);
+    LBM.spin(reverse, 200, rpm);
+    RFM.spin(reverse, 200, rpm);
+    RBM.spin(fwd, 200, rpm);
+
+    if (timer.getTime() > timeout){
+      stopMotors();
+      return;
+    }
+
+    wait(5, msec);
+  }
+  stopMotors();
 }
