@@ -11,12 +11,15 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  flywheel(true, 550);
-  waitUntil((Flywheel1.velocity(rpm) >= 520) || (Flywheel2.velocity(rpm) >= 520));
+  flywheel(true, 530);
+  waitUntil((Flywheel1.velocity(rpm) >= 530) || (Flywheel2.velocity(rpm) >= 530));
+  wait(0.5, sec);
   shootDisk();
-  waitUntil((Flywheel1.velocity(rpm) >= 520) || (Flywheel2.velocity(rpm) >= 520));
+  wait(0.5, sec);
+  waitUntil((Flywheel1.velocity(rpm) >= 530) || (Flywheel2.velocity(rpm) >= 530));
+  wait(0.5, sec);
   shootDisk();
-  wait(1, sec);
+  wait(0.5, sec);
   flywheel(false, 520);
   moveForward(2.5, 2);
   turnTo(230, 2);
