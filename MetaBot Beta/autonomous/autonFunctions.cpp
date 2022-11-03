@@ -187,3 +187,24 @@ void strafeRight(double inches, double timeout){
   }
   stopMotors();
 }
+
+void moveToDistance(double inches, double timeout){
+
+  TimeoutClock timer;
+
+  while(Distance.objectDistance(vex::inches) < inches)
+  {    
+    LFM.spin(fwd, 200, rpm);
+    LBM.spin(fwd, 200, rpm);
+    RFM.spin(fwd, 200, rpm);
+    RBM.spin(fwd, 200, rpm);
+
+    if (timer.getTime() > timeout){
+      stopMotors();
+      return;
+    }
+
+    wait(5, msec);
+  }
+  stopMotors();
+}

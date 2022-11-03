@@ -59,6 +59,8 @@ int brainDebug() {
     Brain.Screen.print("Encoder S: ");      
     Brain.Screen.print("%.2f", EncoderS.position(deg));
     Brain.Screen.setCursor(11, 1);
+    Brain.Screen.print("Distance Sensor: ");      
+    Brain.Screen.print("%.2f", Distance.objectDistance(inches));
     wait(100, msec);
   }
   return 0;

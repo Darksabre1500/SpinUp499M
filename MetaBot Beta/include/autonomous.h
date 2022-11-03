@@ -15,5 +15,6 @@ using namespace vex;
   void shootDisk();
   void moveForward(double inches, double timeout);
   void strafeRight(double inches, double timeout);
+  void moveToDistance(double inches, double timeout);
 
 #endif
