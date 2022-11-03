@@ -17,6 +17,7 @@ void usercontrol(void) {
     intake();
     flywheel();
     flicker();
+    endgame();
 
     /*if (Controller1.ButtonA.pressing()){
       aimbot(BLUE);
