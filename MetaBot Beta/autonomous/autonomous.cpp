@@ -39,7 +39,7 @@ void autonomous(void) {
   flywheel(false, 520);*/
 
 
-  waitUntil((Flywheel1.velocity(rpm) >= 520) || (Flywheel2.velocity(rpm) >= 520));
+  //waitUntil((Flywheel1.velocity(rpm) >= 520) || (Flywheel2.velocity(rpm) >= 520));
   /*
   flywheel(true, 550);
   wait(2.5, sec);

@@ -26,6 +26,7 @@ extern motor Flywheel2;
 extern motor Intake2;
 extern digital_out Flicker;
 extern rotation EncoderS;
+extern digital_out Endgame;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

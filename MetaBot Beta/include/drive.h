@@ -10,5 +10,6 @@
   void intake();
   int flywheel();
   int flicker();
+  void endgame();
 
 #endif
