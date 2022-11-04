@@ -24,13 +24,13 @@ void autonomous(void) {
   flywheel(false, 375);
 
   //Do Roller
-  strafe(3.5, right, 2);
-  move(20, reverse, 2);
+  /*strafe(1.5, right, 2);
+  move(10, reverse, 2);
   turnTo(180, 2);
   wait(0.25, sec);
   move(3, fwd, 1);
   intake(true, reverse);
   wait(2, sec);
-  intake(false, reverse);
+  intake(false, reverse);*/
 
 } 

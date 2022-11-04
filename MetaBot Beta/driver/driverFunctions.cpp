@@ -107,7 +107,7 @@ int flywheel(){
     Flywheel1.spin(fwd, flywheelPower, rpm);
     Flywheel2.spin(fwd, flywheelPower, rpm);
     Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
+    Controller1.Screen.setCursor(1,1);
     Controller1.Screen.print("Flywheel Speed: ");
     Controller1.Screen.print("%d", flywheelPower);
     waitUntil(!Controller1.ButtonLeft.pressing());
@@ -115,7 +115,7 @@ int flywheel(){
   else if (Controller1.ButtonLeft.pressing() && !flywheelActive) {
     flywheelPower -= 10;
     Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
+    Controller1.Screen.setCursor(1,1);
     Controller1.Screen.print("Flywheel Speed: ");
     Controller1.Screen.print("%d", flywheelPower);
     waitUntil(!Controller1.ButtonLeft.pressing());
@@ -125,7 +125,7 @@ int flywheel(){
     Flywheel1.spin(fwd, flywheelPower, rpm);
     Flywheel2.spin(fwd, flywheelPower, rpm);
     Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
+    Controller1.Screen.setCursor(1,1);
     Controller1.Screen.print("Flywheel Speed: ");
     Controller1.Screen.print("%d", flywheelPower);
     waitUntil(!Controller1.ButtonRight.pressing());
@@ -133,7 +133,7 @@ int flywheel(){
   else if (Controller1.ButtonRight.pressing() && !flywheelActive) {
     flywheelPower += 10;
     Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
+    Controller1.Screen.setCursor(1,1);
     Controller1.Screen.print("Flywheel Speed: ");
     Controller1.Screen.print("%d", flywheelPower);
     waitUntil(!Controller1.ButtonRight.pressing());
