@@ -11,24 +11,28 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  flywheel(true, 540);
-  waitUntil((Flywheel1.velocity(rpm) >= 540) || (Flywheel2.velocity(rpm) >= 540));
+  //Flywheel
+  flywheel(true, 490);
+  waitUntil((Flywheel1.velocity(rpm) >= 490) || (Flywheel2.velocity(rpm) >= 490));
   wait(0.3, sec);
   shootDisk();
   wait(0.5, sec);
-  flywheel(true, 550);
-  waitUntil((Flywheel1.velocity(rpm) >= 550) || (Flywheel2.velocity(rpm) >= 550));
+  flywheel(true, 490);
+  waitUntil((Flywheel1.velocity(rpm) >= 490) || (Flywheel2.velocity(rpm) >= 490));
   wait(0.3, sec);
   shootDisk();
   wait(0.5, sec);
+  
+  //Roller
   flywheel(false, 520);
   moveForward(2.5, 2);
-  turnTo(230, 2);
+  turnTo(235, 2);
   wait(0.25, sec);
   strafeRight(1.5, 2);
-  moveForward(7.5, 1);
+  moveForward(8.5, 1);
+  wait(0.5, sec);
   intake(true, reverse);
-  wait(2, sec);
+  wait(0.75, sec);
   intake(false, reverse);
 
   /*flywheel(true, 520);
