@@ -16,5 +16,6 @@ using namespace vex;
   void moveForward(double inches, double timeout);
   void strafeRight(double inches, double timeout);
   void moveToDistance(double inches, double timeout);
+  void move(double inches, directionType dir, double timeout);
 
 #endif
