@@ -19,7 +19,7 @@ void autonomous(void) {
 
   //Shoot
   move(2, reverse, 0.4);
-  turnTo(180, 2);
+  turnTo(150, 2);
   flywheel(true, 400);
   waitUntil((Flywheel1.velocity(rpm) >= 400) || (Flywheel2.velocity(rpm) >= 400));
   wait(0.3, sec);
