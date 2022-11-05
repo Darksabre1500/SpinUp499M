@@ -31,6 +31,11 @@ void autonomous(void) {
   wait(0.5, sec);
   flywheel(false, 400);
 
+  //Endgame
+  turnTo(230, 2);
+  wait(0.5, sec);
+  Endgame.set(true);
+
 
   
 
