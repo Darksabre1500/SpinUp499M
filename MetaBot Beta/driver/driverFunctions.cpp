@@ -7,11 +7,13 @@ int jValuesRBM;
 
 void drive() {
 
+  //Gathers joystick data from controller and creates speeds for each motor
   jValuesLFM = Controller1.Axis3.position() + Controller1.Axis4.position() + (Controller1.Axis1.position() * 0.8);
   jValuesRFM = Controller1.Axis3.position() - Controller1.Axis4.position() - (Controller1.Axis1.position() * 0.8);
   jValuesLBM = Controller1.Axis3.position() - Controller1.Axis4.position() + (Controller1.Axis1.position() * 0.8);
   jValuesRBM = Controller1.Axis3.position() + Controller1.Axis4.position() - (Controller1.Axis1.position() * 0.8);
 
+  //Tells the motors to spin at their respective values, capping the power at 100%
   LFM.spin(fwd, numCutoff(jValuesLFM, 100), pct);
   RFM.spin(fwd, numCutoff(jValuesRFM, 100), pct);
   LBM.spin(fwd, numCutoff(jValuesLBM, 100), pct);
@@ -83,98 +85,55 @@ void intake(){
 bool flywheelActive = false;
 int flywheelPower = 500;
 
-int flywheel(){
-  //Change Power 
-  if (Controller1.ButtonUp.pressing() && flywheelActive){
-    flywheelPower = 500;
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-  }
-  else if (Controller1.ButtonUp.pressing() && !flywheelActive) {
+void flywheel(){
+  //Change Power Presets
+  if (Controller1.ButtonUp.pressing()) {
     flywheelPower = 500;
   }
-  else if (Controller1.ButtonDown.pressing() && flywheelActive) {
-    flywheelPower = 420;
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-  }
-  else if (Controller1.ButtonDown.pressing() && !flywheelActive) {
+  else if (Controller1.ButtonDown.pressing()) {
     flywheelPower = 420;
   }
-
-  if (Controller1.ButtonLeft.pressing() && flywheelActive) {
+  //Increment/Decrement Power
+  else if (Controller1.ButtonLeft.pressing()) {
     flywheelPower -= 10;
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-    Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
-    Controller1.Screen.print("Flywheel Speed: ");
-    Controller1.Screen.print("%d", flywheelPower);
-    waitUntil(!Controller1.ButtonLeft.pressing());
   }
-  else if (Controller1.ButtonLeft.pressing() && !flywheelActive) {
-    flywheelPower -= 10;
-    Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
-    Controller1.Screen.print("Flywheel Speed: ");
-    Controller1.Screen.print("%d", flywheelPower);
-    waitUntil(!Controller1.ButtonLeft.pressing());
-  }
-  else if (Controller1.ButtonRight.pressing() && flywheelActive) {
+  else if (Controller1.ButtonRight.pressing()) {
     flywheelPower += 10;
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-    Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
-    Controller1.Screen.print("Flywheel Speed: ");
-    Controller1.Screen.print("%d", flywheelPower);
-    waitUntil(!Controller1.ButtonRight.pressing());
-  }
-  else if (Controller1.ButtonRight.pressing() && !flywheelActive) {
-    flywheelPower += 10;
-    Controller1.Screen.clearLine(1);
-    Controller1.Screen.setCursor(1,0);
-    Controller1.Screen.print("Flywheel Speed: ");
-    Controller1.Screen.print("%d", flywheelPower);
-    waitUntil(!Controller1.ButtonRight.pressing());
   }
 
-  /*else if (Controller1.ButtonLeft.pressing() && flywheelActive) {
-    flywheelPower = 460;
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-  }
-  else if (Controller1.ButtonLeft.pressing() && !flywheelActive) {
-    flywheelPower = 460;
-  }*/
-
-  //Start Flywheel
-
+  //Toggle Start Flywheel
   if (Controller1.ButtonL1.pressing() && !flywheelActive){
     Flywheel1.spin(fwd, flywheelPower, rpm);
     Flywheel2.spin(fwd, flywheelPower, rpm);
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = true;
   }
+  //Toggle Stop Flywheel
   else if (Controller1.ButtonL1.pressing() && flywheelActive) {
     Flywheel1.stop(coast);
     Flywheel2.stop(coast);
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = false;
   }
+  //Update Flywheel Power
+  else if (flywheelActive){
+    Flywheel1.spin(fwd, flywheelPower, rpm);
+    Flywheel2.spin(fwd, flywheelPower, rpm);
+  }
 
-  
-
-  return 0;
+  //Update Power Readout
+  Controller1.Screen.clearLine(1);
+  Controller1.Screen.setCursor(1,0);
+  Controller1.Screen.print("Flywheel Speed: ");
+  Controller1.Screen.print("%d", flywheelPower);
 }
 
-int flicker(){
+void flicker(){
   if (Controller1.ButtonL2.pressing() && flywheelActive){
     Flicker.set(true);
     wait(0.125, sec);
     Flicker.set(false);
   }
-  return 0;
 }
 
 void endgame(){
