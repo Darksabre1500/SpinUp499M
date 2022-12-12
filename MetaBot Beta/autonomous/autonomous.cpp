@@ -11,8 +11,13 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
+  LFM.spin(fwd, 200, rpm);
+  LBM.stop(coast);
+  RFM.stop(coast);
+  RBM.spin(fwd, 200, rpm);
+
   //Shoot into Bottom
-  flywheel(true, 375);
+  /*flywheel(true, 375);
   waitUntil((Flywheel1.velocity(rpm) >= 375) || (Flywheel2.velocity(rpm) >= 375));
   wait(0.5, sec);
   shootDisk();
@@ -21,7 +26,7 @@ void autonomous(void) {
   wait(0.5, sec);
   shootDisk();
   wait(0.5, sec);
-  flywheel(false, 375);
+  flywheel(false, 375);*/
 
   //Do Roller
   /*strafe(1.5, right, 2);

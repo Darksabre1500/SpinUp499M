@@ -12,7 +12,7 @@ double Mbr;
 void omniController(double targetAngle, double speed)
 {
   //T finds Direction to move, R finds how much to prioritize rotation, and S finds speed
-  double T = angleWrap(degToRad(targetAngle) - odom.getAngle(RADIANS), RADIANS);
+  double T = angleWrap(targetAngle - odom.getAngle(RADIANS) + M_PI/2, RADIANS);
   double R = 0;
   double S = numCutoff(speed/200, 1);
 
