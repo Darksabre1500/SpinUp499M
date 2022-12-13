@@ -9,9 +9,9 @@
 void Odometry::updateOdom()
 {
   //Finds distance traveled since last check and converts it to inches
-  double L = degToIn(EncoderL.position(deg) - prevL, 2.75);
-  double R = degToIn(EncoderR.position(deg) - prevR, 2.75);
-  double S = degToIn(EncoderS.position(deg) - prevS, 2.75);
+  double L = degToIn(EncoderL.position(deg) - prevL, 2.7);
+  double R = degToIn(EncoderR.position(deg) - prevR, 2.7);
+  double S = degToIn(EncoderS.position(deg) - prevS, 2.35);
   //Saves Encoder Values for next check
   prevL = EncoderL.position(deg);
   prevR = EncoderR.position(deg);

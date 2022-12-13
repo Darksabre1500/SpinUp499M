@@ -17,7 +17,7 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
     targetY += odom.getY();
   }
   TimeoutClock timer;
-  PIDClass Speed(15);
+  PIDClass Speed(30);
 
   while(vectorLength(targetX, targetY) > 2)
   {

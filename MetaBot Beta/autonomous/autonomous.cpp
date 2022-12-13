@@ -11,10 +11,8 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  LFM.spin(fwd, 200, rpm);
-  LBM.stop(coast);
-  RFM.stop(coast);
-  RBM.spin(fwd, 200, rpm);
+  goTo(10, 10, 20, RELATIVE);
+  Controller1.rumble(". .");
 
   //Shoot into Bottom
   /*flywheel(true, 375);
