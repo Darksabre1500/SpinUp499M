@@ -11,8 +11,27 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  goTo(10, 10, 20, RELATIVE);
-  Controller1.rumble(". .");
+  flywheel(true, 275);
+  waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
+  shootDisk();
+  wait(0.75, sec);
+  shootDisk();
+  wait(0.75, sec);
+  turnTo(45, 2);
+  strafe(9.5, right, 2);
+  turnTo(41, 2);
+  intake(true, fwd);
+  move(55, fwd, 5);
+  flywheel(true, 275);
+  turnTo(140, 2);
+  waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
+  shootDisk();
+  wait(0.75, sec);
+  shootDisk();
+  wait(0.75, sec);
+  shootDisk();
+  flywheel(false, 275);
+  intake(false, fwd);
 
   //Shoot into Bottom
   /*flywheel(true, 375);
