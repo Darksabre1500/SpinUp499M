@@ -12,26 +12,30 @@
 
 void autonomous(void) {
   
+  //Flywheel
+  flywheel(true, 460);
+  waitUntil((Flywheel1.velocity(rpm) >= 460) || (Flywheel2.velocity(rpm) >= 460));
+  wait(0.3, sec);
+  shootDisk();
+  wait(0.5, sec);
+  flywheel(true, 460);
+  waitUntil((Flywheel1.velocity(rpm) >= 460) || (Flywheel2.velocity(rpm) >= 460));
+  wait(0.3, sec);
+  shootDisk();
+  wait(0.5, sec);
+  
   //Roller
-  move(0.5, fwd, 1);
+  flywheel(false, 420);
+  moveForward(2.5, 2);
+  turnTo(235, 2);
+  wait(0.25, sec);
+  strafeRight(8, 2);
+  wait(0.25, sec);
+  moveForward(8.5, 2);
   wait(0.5, sec);
   intake(true, reverse);
-  wait(1, sec);
+  wait(2, sec);
   intake(false, reverse);
-
-  //Shoot
-  move(2, reverse, 0.4);
-  turnTo(150, 2);
-  flywheel(true, 400);
-  waitUntil((Flywheel1.velocity(rpm) >= 400) || (Flywheel2.velocity(rpm) >= 400));
-  wait(0.3, sec);
-  shootDisk();
-  wait(0.5, sec);
-  waitUntil((Flywheel1.velocity(rpm) >= 400) || (Flywheel2.velocity(rpm) >= 400));
-  wait(0.3, sec);
-  shootDisk();
-  wait(0.5, sec);
-  flywheel(false, 400);
 
 
   
