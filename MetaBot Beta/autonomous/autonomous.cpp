@@ -26,20 +26,16 @@ void autonomous(void) {
   
   //Roller
   flywheel(false, 420);
-  moveForward(2.5, 2);
+  move(2.5, fwd, 2);
   turnTo(235, 2);
   wait(0.25, sec);
-  strafeRight(8, 2);
+  strafe(8, right, 2);
   wait(0.25, sec);
-  moveForward(8.5, 2);
+  move(8.5, fwd, 2);
   wait(0.5, sec);
   intake(true, reverse);
   wait(2, sec);
   intake(false, reverse);
-
-
-  
-
 
 
   /*flywheel(true, 520);

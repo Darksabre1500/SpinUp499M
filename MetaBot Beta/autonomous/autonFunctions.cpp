@@ -17,7 +17,7 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
     targetY += odom.getY();
   }
   TimeoutClock timer;
-  PIDClass Speed(15);
+  PIDClass Speed(30);
 
   while(vectorLength(targetX, targetY) > 2)
   {
@@ -47,18 +47,18 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
 void turnTo(double targetAngle, double timeout)
 {
   TimeoutClock timer;
-  PIDClass Speed(1.15);
+  PIDClass Speed(4);
 
-  while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 3)
+  while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 1)
   {
     //Update PID Controller
-    //Speed.PID(turnDistance(targetAngle), 200); 
+    Speed.PID(turnDistance(targetAngle), 200); 
 
     
-    LFM.spin(reverse, /*Speed.getPow()*/200, rpm);
-    LBM.spin(reverse, /*Speed.getPow()*/200, rpm);
-    RFM.spin(fwd, /*Speed.getPow()*/200, rpm);
-    RBM.spin(fwd, /*Speed.getPow()*/200, rpm);
+    LFM.spin(reverse, Speed.getPow(), rpm);
+    LBM.spin(reverse, Speed.getPow(), rpm);
+    RFM.spin(fwd, Speed.getPow(), rpm);
+    RBM.spin(fwd, Speed.getPow(), rpm);
 
     if (timer.getTime() > timeout)
       break;
@@ -146,69 +146,6 @@ void shootDisk(){
   Flicker.set(false);
 }
 
-void moveForward(double inches, double timeout){
-  double init = degToIn(EncoderL.position(deg), 2.75);
-  TimeoutClock timer;
-
-  while(degToIn(EncoderL.position(deg), 2.75) - init < inches)
-  {    
-    LFM.spin(fwd, 50, rpm);
-    LBM.spin(fwd, 50, rpm);
-    RFM.spin(fwd, 50, rpm);
-    RBM.spin(fwd, 50, rpm);
-
-    if (timer.getTime() > timeout){
-      stopMotors();
-      return;
-    }
-
-    wait(5, msec);
-  }
-  stopMotors();
-}
-
-void strafeRight(double inches, double timeout){
-  double init = degToIn(EncoderS.position(deg), 2.75);
-  TimeoutClock timer;
-
-  while(degToIn(EncoderS.position(deg), 2.75) - init < inches)
-  {    
-    LFM.spin(fwd, 200, rpm);
-    LBM.spin(reverse, 200, rpm);
-    RFM.spin(reverse, 200, rpm);
-    RBM.spin(fwd, 200, rpm);
-
-    if (timer.getTime() > timeout){
-      stopMotors();
-      return;
-    }
-
-    wait(5, msec);
-  }
-  stopMotors();
-}
-
-void moveToDistance(double inches, double timeout){
-
-  TimeoutClock timer;
-
-  while(Distance.objectDistance(vex::inches) < inches)
-  {    
-    LFM.spin(fwd, 50, rpm);
-    LBM.spin(fwd, 50, rpm);
-    RFM.spin(fwd, 50, rpm);
-    RBM.spin(fwd, 50, rpm);
-
-    if (timer.getTime() > timeout){
-      stopMotors();
-      return;
-    }
-
-    wait(5, msec);
-  }
-  stopMotors();
-}
-
 void move(double inches, directionType dir, double timeout){
   double init = degToIn(EncoderL.position(deg), 2.75);
   TimeoutClock timer;
@@ -216,10 +153,10 @@ void move(double inches, directionType dir, double timeout){
   if(dir == fwd || dir == forward){
     while(degToIn(EncoderL.position(deg), 2.75) - init < inches)
     {    
-      LFM.spin(fwd, 75, rpm);
-      LBM.spin(fwd, 75, rpm);
-      RFM.spin(fwd, 75, rpm);
-      RBM.spin(fwd, 75, rpm);
+      LFM.spin(fwd, 150, rpm);
+      LBM.spin(fwd, 150, rpm);
+      RFM.spin(fwd, 150, rpm);
+      RBM.spin(fwd, 150, rpm);
 
       if (timer.getTime() > timeout){
         stopMotors();
@@ -233,10 +170,10 @@ void move(double inches, directionType dir, double timeout){
   else{
     while(degToIn(EncoderL.position(deg), 2.75) - init > -inches)
     {    
-      LFM.spin(reverse, 75, rpm);
-      LBM.spin(reverse, 75, rpm);
-      RFM.spin(reverse, 75, rpm);
-      RBM.spin(reverse, 75, rpm);
+      LFM.spin(reverse, 150, rpm);
+      LBM.spin(reverse, 150, rpm);
+      RFM.spin(reverse, 150, rpm);
+      RBM.spin(reverse, 150, rpm);
 
       if (timer.getTime() > timeout){
         stopMotors();
@@ -247,4 +184,45 @@ void move(double inches, directionType dir, double timeout){
     }
   }
     stopMotors();
+}
+
+void strafe(double inches, turnType dir, double timeout){
+  double init = degToIn(EncoderS.position(deg), 2.75);
+  TimeoutClock timer;
+  
+  if(dir == right){
+    while(degToIn(EncoderS.position(deg), 2.75) - init < inches)
+    {    
+      LFM.spin(fwd, 200, rpm);
+      LBM.spin(reverse, 200, rpm);
+      RFM.spin(reverse, 200, rpm);
+      RBM.spin(fwd, 200, rpm);
+
+      if (timer.getTime() > timeout){
+        stopMotors();
+        return;
+      }
+
+      wait(5, msec);
+    }
+  }
+
+  else{
+    while(degToIn(EncoderS.position(deg), 2.75) - init > -inches)
+    {    
+      LFM.spin(reverse, 200, rpm);
+      LBM.spin(fwd, 200, rpm);
+      RFM.spin(fwd, 200, rpm);
+      RBM.spin(reverse, 200, rpm);
+
+      if (timer.getTime() > timeout){
+        stopMotors();
+        return;
+      }
+
+      wait(5, msec);
+    }
+  }
+
+  stopMotors();
 }
