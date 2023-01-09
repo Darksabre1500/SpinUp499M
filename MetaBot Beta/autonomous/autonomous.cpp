@@ -11,17 +11,22 @@
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
+  //Shoot Preloads
   flywheel(true, 275);
   waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
   shootDisk();
   wait(0.75, sec);
   shootDisk();
   wait(0.75, sec);
+  
+  //Pick up Row of Disks
   turnTo(45, 2);
   strafe(9.5, right, 2);
   turnTo(41, 2);
   intake(true, fwd);
   move(55, fwd, 5);
+
+  //Shoot Disks
   flywheel(true, 275);
   turnTo(140, 2);
   waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
