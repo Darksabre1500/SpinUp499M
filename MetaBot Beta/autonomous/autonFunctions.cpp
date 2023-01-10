@@ -153,10 +153,10 @@ void move(double inches, directionType dir, double timeout){
   if(dir == fwd || dir == forward){
     while(degToIn(EncoderL.position(deg), 2.75) - init < inches)
     {    
-      LFM.spin(fwd, 150, rpm);
-      LBM.spin(fwd, 150, rpm);
-      RFM.spin(fwd, 150, rpm);
-      RBM.spin(fwd, 150, rpm);
+      LFM.spin(fwd, 75, rpm);
+      LBM.spin(fwd, 75, rpm);
+      RFM.spin(fwd, 75, rpm);
+      RBM.spin(fwd, 75, rpm);
 
       if (timer.getTime() > timeout){
         stopMotors();
