@@ -16,18 +16,18 @@ void autonomous(void) {
   move(0.5, fwd, 1);
   wait(0.5, sec);
   intake(true, reverse);
-  wait(1, sec);
+  wait(0.75, sec);
   intake(false, reverse);
 
   //Shoot
-  move(2, reverse, 0.4);
-  turnTo(150, 2);
-  flywheel(true, 400);
-  waitUntil((Flywheel1.velocity(rpm) >= 400) || (Flywheel2.velocity(rpm) >= 400));
+  move(1.5, reverse, 1);
+  turnTo(170, 2);
+  flywheel(true, 350);
+  waitUntil((Flywheel1.velocity(rpm) >= 350) || (Flywheel2.velocity(rpm) >= 350));
   wait(0.3, sec);
   shootDisk();
   wait(0.5, sec);
-  waitUntil((Flywheel1.velocity(rpm) >= 400) || (Flywheel2.velocity(rpm) >= 400));
+  waitUntil((Flywheel1.velocity(rpm) >= 350) || (Flywheel2.velocity(rpm) >= 350));
   wait(0.3, sec);
   shootDisk();
   wait(0.5, sec);
