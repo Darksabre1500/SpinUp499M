@@ -13,27 +13,34 @@
 void autonomous(void) {
   //Shoot Preloads
   flywheel(true, 275);
-  waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
+  waitUntil((Flywheel1.velocity(rpm) >= 250) || (Flywheel2.velocity(rpm) >= 250));
   shootDisk();
-  wait(0.75, sec);
+  wait(0.5, sec);
+  flywheel(true, 300);
+  waitUntil((Flywheel1.velocity(rpm) >= 250) || (Flywheel2.velocity(rpm) >= 250));
   shootDisk();
-  wait(0.75, sec);
+  wait(0.5, sec);
   
   //Pick up Row of Disks
-  turnTo(45, 2);
-  strafe(9.5, right, 2);
-  turnTo(41, 2);
   intake(true, fwd);
+  turnTo(45, 2);
+  wait(0.25, sec);
+  flywheel(false, 275);
+  strafe(11, right, 2);
+  wait(0.25, sec);
+  turnTo(40, 2);
   move(55, fwd, 5);
 
   //Shoot Disks
-  flywheel(true, 275);
-  turnTo(140, 2);
-  waitUntil((Flywheel1.velocity(rpm) >= 275) || (Flywheel2.velocity(rpm) >= 275));
+  flywheel(true, 225);
+  turnTo(120, 2);
+  waitUntil((Flywheel1.velocity(rpm) >= 225) || (Flywheel2.velocity(rpm) >= 225));
   shootDisk();
-  wait(0.75, sec);
+  wait(0.5, sec);
+  waitUntil((Flywheel1.velocity(rpm) >= 225) || (Flywheel2.velocity(rpm) >= 225));
   shootDisk();
-  wait(0.75, sec);
+  wait(0.5, sec);
+  waitUntil((Flywheel1.velocity(rpm) >= 225) || (Flywheel2.velocity(rpm) >= 225));
   shootDisk();
   flywheel(false, 275);
   intake(false, fwd);
