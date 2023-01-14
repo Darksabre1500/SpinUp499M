@@ -94,12 +94,12 @@ int flywheel(){
     flywheelPower = 500;
   }
   else if (Controller1.ButtonDown.pressing() && flywheelActive) {
-    flywheelPower = 420;
+    flywheelPower = 460;
     Flywheel1.spin(fwd, flywheelPower, rpm);
     Flywheel2.spin(fwd, flywheelPower, rpm);
   }
   else if (Controller1.ButtonDown.pressing() && !flywheelActive) {
-    flywheelPower = 420;
+    flywheelPower = 460;
   }
 
   if (Controller1.ButtonLeft.pressing() && flywheelActive) {
