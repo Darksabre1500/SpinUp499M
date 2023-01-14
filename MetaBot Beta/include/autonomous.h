@@ -13,9 +13,7 @@ using namespace vex;
   void intake(bool turnOn, directionType dir);
   void flywheel(bool turOn, int pow);
   void shootDisk();
-  void moveForward(double inches, double timeout);
-  void strafeRight(double inches, double timeout);
-  void moveToDistance(double inches, double timeout);
   void move(double inches, directionType dir, double timeout);
+  void strafe(double inches, turnType dir, double timeout);
 
 #endif

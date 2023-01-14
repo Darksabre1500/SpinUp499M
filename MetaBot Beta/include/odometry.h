@@ -36,6 +36,10 @@ private:
   void updateOdom();
   void updateAngle();
 
+ void resetAngle(){
+    botRot = 0;
+  }
+
   double getX(){
     return globalX;
   }
