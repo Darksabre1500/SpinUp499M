@@ -38,7 +38,7 @@ void autonomous(void) {
   wait(0.25, sec);
   intake(true, reverse);
   move(7.5, fwd, 2);
-  wait(0.75, sec);
+  wait(1, sec);
   intake(false, reverse);
 
   //Endgame
