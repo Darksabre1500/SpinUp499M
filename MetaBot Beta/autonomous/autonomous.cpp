@@ -16,7 +16,7 @@ void autonomous(void) {
   move(0.5, fwd, 1);
   wait(0.5, sec);
   intake(true, reverse);
-  wait(0.75, sec);
+  wait(1.25, sec);
   intake(false, reverse);
 
   //Shoot
