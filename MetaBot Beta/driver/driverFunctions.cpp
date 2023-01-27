@@ -137,7 +137,7 @@ void flicker(){
 }
 
 void endgame(){
-  if(Controller1.ButtonB.pressing() && Controller1.ButtonY.pressing()){
+  if(Controller1.ButtonB.pressing() && Controller1.ButtonX.pressing()){
     Endgame.set(true);
   }
 }
