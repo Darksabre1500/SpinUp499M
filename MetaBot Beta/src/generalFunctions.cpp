@@ -14,9 +14,7 @@ double degToRev(double degreesTraveled) {
   return degreesTraveled / 360; 
 }
 
-double degToIn(double degreesTraveled, double wheelDiameter) {
-  return (degreesTraveled / 360) * (wheelDiameter * M_PI); 
-}
+
 
 double numCutoff(double num, double cutoff){
   if (num > cutoff)
