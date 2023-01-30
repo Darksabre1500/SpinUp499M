@@ -91,7 +91,7 @@ void flywheel(){
     flywheelPower = 500;
   }
   else if (Controller1.ButtonDown.pressing()) {
-    flywheelPower = 420;
+    flywheelPower = 460;
   }
   //Increment/Decrement Power
   else if (Controller1.ButtonLeft.pressing()) {
@@ -137,7 +137,7 @@ void flicker(){
 }
 
 void endgame(){
-  if(Controller1.ButtonB.pressing() && Controller1.ButtonY.pressing()){
+  if(Controller1.ButtonB.pressing() && Controller1.ButtonX.pressing()){
     Endgame.set(true);
   }
 }

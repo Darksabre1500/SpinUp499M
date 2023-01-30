@@ -13,12 +13,12 @@
 void autonomous(void) {
   
   //Flywheel
-  flywheel(true, 500);
-  waitUntil((Flywheel1.velocity(rpm) >= 500) || (Flywheel2.velocity(rpm) >= 500));
+  flywheel(true, 600);
+  waitUntil((Flywheel1.velocity(rpm) >= 600) || (Flywheel2.velocity(rpm) >= 600));
   shootDisk();
   wait(0.5, sec);
-  flywheel(true, 490);
-  waitUntil((Flywheel1.velocity(rpm) <= 490) || (Flywheel2.velocity(rpm) <= 490));
+  flywheel(true, 600);
+  waitUntil((Flywheel1.velocity(rpm) <= 600) || (Flywheel2.velocity(rpm) <= 600));
   shootDisk();
   wait(0.5, sec);
   
@@ -38,7 +38,7 @@ void autonomous(void) {
   wait(0.25, sec);
   intake(true, reverse);
   move(7.5, fwd, 2);
-  wait(0.5, sec);
+  wait(1, sec);
   intake(false, reverse);
 
 
