@@ -20,33 +20,6 @@ void drive() {
   RBM.spin(fwd, numCutoff(jValuesRBM, 100), pct);     
 } 
 
-void aimbot(colorType goalColor){
-  int pos = 0;
-  double pow = 0;
-
-  if (goalColor == RED){
-    pos = redGoalCenter();
-  }
-  else{
-    pos = blueGoalCenter();
-  }
-
-  if (pos > 163){
-    pow = (pos - 158.0) / 2;
-    LFM.spin(fwd, numCutoff(jValuesLFM + pow, 100), pct);
-    RFM.spin(fwd, numCutoff(jValuesRFM - pow, 100), pct);
-    LBM.spin(fwd, numCutoff(jValuesLBM + pow, 100), pct);
-    RBM.spin(fwd, numCutoff(jValuesRBM - pow, 100), pct);  
-  }
-  else if (pos < 152 && pos > 0) {
-    pow = (157.0 - pos) / 2;
-    LFM.spin(fwd, numCutoff(jValuesLFM - pow, 100), pct);
-    RFM.spin(fwd, numCutoff(jValuesRFM + pow, 100), pct);
-    LBM.spin(fwd, numCutoff(jValuesLBM - pow, 100), pct);
-    RBM.spin(fwd, numCutoff(jValuesRBM + pow, 100), pct);  
-  }
-}
-
 void brakeWheels() {
   if (LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0){
     LFM.stop(brake);
