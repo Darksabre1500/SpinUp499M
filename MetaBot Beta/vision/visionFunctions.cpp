@@ -1,21 +1,22 @@
 #include "vex.h"
 
-int redGoalCenter() {
-  Vision.takeSnapshot(Vision__REDGOAL);
-  if (Vision.objectCount > 0) {
-    return Vision.largestObject.centerX;
-  } 
-  else {
-    return -1;
+bool isRollerScored(colorType rollerColor) {
+
+  if (rollerColor == BLUE){
+    Vision.takeSnapshot(Vision__REDROLLER);
   }
+  else{
+    Vision.takeSnapshot(Vision__BLUEROLLER);
+  }
+  
+  if (!Vision.largestObject.exists){
+    return true;
+  }
+  else if ((Vision.largestObject.height * Vision.largestObject.width) < 20){
+    return true;
+  }
+  else
+    return false;
 }
 
-int blueGoalCenter() {
-  Vision.takeSnapshot(Vision__BLUEGOAL);
-  if (Vision.objectCount > 0) {
-    return Vision.largestObject.centerX;
-  } 
-  else {
-    return -1;
-  }
-}
+

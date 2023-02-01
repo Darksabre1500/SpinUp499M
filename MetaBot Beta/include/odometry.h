@@ -36,7 +36,7 @@ private:
   void updateOdom();
   void updateAngle();
 
- void resetAngle(){
+  void resetAngle(){
     botRot = 0;
   }
 
