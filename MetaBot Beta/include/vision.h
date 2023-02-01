@@ -1,7 +1,7 @@
 #ifndef vision_h
 #define vision_h
 
-int redGoalCenter();
-int blueGoalCenter();
+enum colorType {RED, BLUE};
+bool isRollerScored(colorType rollerColor);
 
 #endif

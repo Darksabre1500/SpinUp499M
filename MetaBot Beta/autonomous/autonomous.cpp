@@ -13,10 +13,8 @@
 void autonomous(void) {
   
   //Roller
-  intake(true, reverse);
   move(2, fwd, 1);
-  wait(1.25, sec);
-  intake(false, reverse);
+  roller(RED);
 
   //Shoot
   move(1.5, reverse, 1);
