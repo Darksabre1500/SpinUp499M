@@ -12,8 +12,8 @@ extern motor RFM;
 extern motor RBM;
 extern encoder EncoderL;
 extern encoder EncoderR;
-extern signature Vision__REDGOAL;
-extern signature Vision__BLUEGOAL;
+extern signature Vision__REDROLLER;
+extern signature Vision__BLUEROLLER;
 extern signature Vision__SIG_3;
 extern signature Vision__SIG_4;
 extern signature Vision__SIG_5;
@@ -27,6 +27,7 @@ extern motor Intake2;
 extern digital_out Flicker;
 extern rotation EncoderS;
 extern digital_out Endgame;
+extern distance Distance;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

@@ -1,11 +1,11 @@
 #include "vex.h"
 
-  void stopMotors(){
-    LFM.stop(brake);
-    RFM.stop(brake);
-    LBM.stop(brake);
-    RBM.stop(brake);
-  }
+void stopMotors(){
+  LFM.stop(brake);
+  RFM.stop(brake);
+  LBM.stop(brake);
+  RBM.stop(brake);
+}
 
 //This function moves the bot to the specified coordinates. The bot will always start at 0, 0 on startup. 
 //If it times out, it will move on to the next function even if it still hasn't finished. 
@@ -68,67 +68,6 @@ void turnTo(double targetAngle, double timeout)
   stopMotors();
 }
 
-
-//This function turns the bot to the specified goal.
-//If the goal is not in sight, it will turn the direction specified until it finds the goal.
-void turnToGoal(colorType goalColor, turnType direction, double timeout)
-{
-  TimeoutClock timer;
-  PIDClass Speed(0.75);
-  int pos;
-  directionType dir = fwd;
-  if (direction == right)
-    dir = reverse;
-
-  do{
-    if (goalColor == RED){
-      pos = redGoalCenter() - 158;
-      if(redGoalCenter() == -1){
-        LFM.spin(dir, -200, rpm);
-        RFM.spin(dir, 200, rpm);
-        LBM.spin(dir, -200, rpm);
-        RBM.spin(dir, 200, rpm);
-        continue;
-      }
-    }
-    else{
-      pos = blueGoalCenter() - 158;
-      if(blueGoalCenter() == -1){
-        LFM.spin(dir, -200, rpm);
-        RFM.spin(dir, 200, rpm);
-        LBM.spin(dir, -200, rpm);
-        RBM.spin(dir, 200, rpm);
-        continue;
-      }
-    }
-    
-    Speed.PID(pos, 200);
-    LFM.spin(reverse, Speed.getPow(), rpm);
-    RFM.spin(reverse, Speed.getPow(), rpm);
-    LBM.spin(fwd, Speed.getPow(), rpm);
-    RBM.spin(fwd, Speed.getPow(), rpm);
-
-    if (timer.getTime() > timeout)
-      break;
-
-    wait(5, msec);
-
-  } while(pos > 2 || pos < -2);
-  
-  stopMotors();
-}
-
-void intake(bool turnOn, directionType dir){
-  if (turnOn){
-    Intake1.spin(dir, 100, pct);
-    Intake2.spin(dir, 100, pct);
-  }
-  else {
-    Intake1.stop(coast);
-    Intake2.stop(coast);
-  }
-}
-
 void flywheel(bool turOn, int pow){
   if (turOn){
     Flywheel1.spin(fwd, pow, rpm);
@@ -153,10 +92,10 @@ void move(double inches, directionType dir, double timeout){
   if(dir == fwd || dir == forward){
     while(degToIn(EncoderL.position(deg), 2.75) - init < inches)
     {    
-      LFM.spin(fwd, 150, rpm);
-      LBM.spin(fwd, 150, rpm);
-      RFM.spin(fwd, 150, rpm);
-      RBM.spin(fwd, 150, rpm);
+      LFM.spin(fwd, 75, rpm);
+      LBM.spin(fwd, 75, rpm);
+      RFM.spin(fwd, 75, rpm);
+      RBM.spin(fwd, 75, rpm);
 
       if (timer.getTime() > timeout){
         stopMotors();
@@ -225,4 +164,23 @@ void strafe(double inches, turnType dir, double timeout){
   }
 
   stopMotors();
+}
+
+void intake(bool turnOn, directionType dir){
+  if (turnOn){
+    Intake1.spin(dir, 100, pct);
+    Intake2.spin(dir, 100, pct);
+  }
+  else {
+    Intake1.stop(coast);
+    Intake2.stop(coast);
+  }
+}
+
+void roller(colorType rollerColor){
+  Intake1.spin(reverse, 30, pct);
+  Intake2.spin(reverse, 30, pct);
+  waitUntil(isRollerScored(rollerColor));
+  Intake1.stop(coast);
+  Intake2.stop(coast);
 }

@@ -16,9 +16,9 @@ motor RBM = motor(PORT1, ratio18_1, true);
 encoder EncoderL = encoder(Brain.ThreeWirePort.G);
 encoder EncoderR = encoder(Brain.ThreeWirePort.E);
 /*vex-vision-config:begin*/
-signature Vision__REDGOAL = signature (1, 5401, 8037, 6720, -1391, -435, -912, 2.5, 0);
-signature Vision__BLUEGOAL = signature (2, -2667, -1837, -2252, 5009, 7089, 6050, 2, 0);
-vision Vision = vision (PORT18, 50, Vision__REDGOAL, Vision__BLUEGOAL);
+signature Vision__REDROLLER = signature (1, 7681, 10923, 9302, -1275, -555, -915, 4.4, 0);
+signature Vision__BLUEROLLER = signature (2, -3425, -2297, -2862, 8281, 13633, 10958, 3, 0);
+vision Vision = vision (PORT18, 50, Vision__REDROLLER, Vision__BLUEROLLER);
 /*vex-vision-config:end*/
 motor Intake1 = motor(PORT5, ratio18_1, false);
 motor Flywheel1 = motor(PORT14, ratio6_1, true);
@@ -27,6 +27,7 @@ motor Intake2 = motor(PORT6, ratio18_1, false);
 digital_out Flicker = digital_out(Brain.ThreeWirePort.A);
 rotation EncoderS = rotation(PORT20, true);
 digital_out Endgame = digital_out(Brain.ThreeWirePort.B);
+distance Distance = distance(PORT12);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
