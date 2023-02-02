@@ -16,5 +16,6 @@ using namespace vex;
   void move(double inches, directionType dir, double timeout);
   void strafe(double inches, turnType dir, double timeout);
   void roller(colorType rollerColor);
+  void roller();
 
 #endif
