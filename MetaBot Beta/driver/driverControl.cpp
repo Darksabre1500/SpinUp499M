@@ -14,6 +14,7 @@ void usercontrol(void) {
   while (1) {
     brakeWheels();
     drive();
+    slowTurn();
     intake();
     flywheel();
     flicker();

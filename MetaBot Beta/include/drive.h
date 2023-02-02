@@ -8,5 +8,6 @@
   void flywheel();
   void flicker();
   void endgame();
+  void slowTurn();
 
 #endif
