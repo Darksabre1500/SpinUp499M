@@ -184,3 +184,13 @@ void roller(colorType rollerColor){
   Intake1.stop(coast);
   Intake2.stop(coast);
 }
+
+void roller(){
+  Intake1.resetPosition();
+  while(std::abs(Intake1.position(degrees)) < 90){
+  Intake1.spin(reverse, 25, pct);
+  Intake2.spin(reverse, 25, pct);
+  }
+  Intake1.stop(coast);
+  Intake2.stop(coast);
+}
