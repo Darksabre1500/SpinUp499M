@@ -15,7 +15,7 @@ void autonomous(void) {
   //Roller
   move(2, fwd, 1);
   wait(0.25, sec);
-  roller(colorFinder());
+  roller();
 
   //Shoot
   move(1.5, reverse, 1);
