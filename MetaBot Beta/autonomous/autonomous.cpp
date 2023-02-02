@@ -28,6 +28,7 @@ void autonomous(void) {
   move(10, reverse, 1);
   turnTo(270, 2);
   move(2, fwd, 1);
-  roller(RED);
+  wait(0.25, sec);
+  roller(colorFinder());
 
 } 
