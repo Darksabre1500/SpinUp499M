@@ -14,22 +14,21 @@ void autonomous(void) {
 
   //Shoot
   flywheel(true, 350);
+  waitUntil((Flywheel1.velocity(rpm) >= 300) || (Flywheel2.velocity(rpm) >= 300));
+  shootDisk();
+  wait(0.75, sec);
   waitUntil((Flywheel1.velocity(rpm) >= 350) || (Flywheel2.velocity(rpm) >= 350));
   wait(0.3, sec);
   shootDisk();
   wait(0.5, sec);
-  waitUntil((Flywheel1.velocity(rpm) >= 350) || (Flywheel2.velocity(rpm) >= 350));
-  wait(0.3, sec);
-  shootDisk();
-  wait(0.5, sec);
-  flywheel(false, 400);
+  flywheel(false, 300);
 
   //Roller
-  move(10, reverse, 2);
+  move(17, reverse, 4);
   wait(0.5, sec);
-  turnTo(175, 2);
-  /*move(2, fwd, 1);
+  turnTo(172, 2);
+  move(10, fwd, 3);
   wait(0.25, sec);
-  roller(colorFinder());*/
+  roller();
 
 } 
