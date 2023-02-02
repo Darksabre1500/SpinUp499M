@@ -109,10 +109,10 @@ void move(double inches, directionType dir, double timeout){
   else{
     while(degToIn(EncoderL.position(deg), 2.75) - init > -inches)
     {    
-      LFM.spin(reverse, 150, rpm);
-      LBM.spin(reverse, 150, rpm);
-      RFM.spin(reverse, 150, rpm);
-      RBM.spin(reverse, 150, rpm);
+      LFM.spin(reverse, 75, rpm);
+      LBM.spin(reverse, 75, rpm);
+      RFM.spin(reverse, 75, rpm);
+      RBM.spin(reverse, 75, rpm);
 
       if (timer.getTime() > timeout){
         stopMotors();
