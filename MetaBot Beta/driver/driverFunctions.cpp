@@ -20,6 +20,21 @@ void drive() {
   RBM.spin(fwd, numCutoff(jValuesRBM, 100), pct);     
 } 
 
+void slowTurn(){
+  if (Controller1.ButtonY.pressing()){
+    LFM.spin(reverse, 15, rpm);
+    LBM.spin(reverse, 15, rpm);
+    RFM.spin(fwd, 15, rpm);
+    RBM.spin(fwd, 15, rpm);
+  }
+  else if (Controller1.ButtonA.pressing()){
+    LFM.spin(fwd, 15, rpm);
+    LBM.spin(fwd, 15, rpm);
+    RFM.spin(reverse, 15, rpm);
+    RBM.spin(reverse, 15, rpm);
+  }
+}
+
 void brakeWheels() {
   if (LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0){
     LFM.stop(brake);
@@ -41,7 +56,11 @@ void callAuton(){
 } 
 
 void intake(){
-  if (Controller1.ButtonR1.pressing()){
+  if (Controller1.ButtonR1.pressing() && Controller1.ButtonR2.pressing()){
+    Intake1.spin(fwd, 25, pct);
+    Intake2.spin(fwd, 25, pct);
+  }
+  else if (Controller1.ButtonR1.pressing()){
     Intake1.spin(fwd, 100, pct);
     Intake2.spin(fwd, 100, pct);
   }

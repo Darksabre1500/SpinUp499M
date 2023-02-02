@@ -3,5 +3,6 @@
 
 enum colorType {RED, BLUE};
 bool isRollerScored(colorType rollerColor);
+colorType colorFinder();
 
 #endif
