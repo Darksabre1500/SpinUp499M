@@ -25,10 +25,11 @@ void autonomous(void) {
   flywheel(false, 400);
 
   //Roller
-  move(10, reverse, 1);
-  turnTo(270, 2);
-  move(2, fwd, 1);
+  move(10, reverse, 2);
+  wait(0.5, sec);
+  turnTo(175, 2);
+  /*move(2, fwd, 1);
   wait(0.25, sec);
-  roller(colorFinder());
+  roller(colorFinder());*/
 
 } 
