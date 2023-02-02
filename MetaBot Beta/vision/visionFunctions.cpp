@@ -1,5 +1,19 @@
 #include "vex.h"
 
+colorType colorFinder(){
+  Vision.takeSnapshot(Vision__REDROLLER);
+  double redArea = Vision.largestObject.height * Vision.largestObject.width;
+  Vision.takeSnapshot(Vision__BLUEROLLER);
+  double blueArea = Vision.largestObject.height * Vision.largestObject.width;
+
+  if (redArea > blueArea){
+    return RED;
+  }
+  else {
+    return BLUE;
+  }
+}
+
 bool isRollerScored(colorType rollerColor) {
 
   if (rollerColor == BLUE){
