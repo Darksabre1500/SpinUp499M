@@ -178,8 +178,8 @@ void intake(bool turnOn, directionType dir){
 }
 
 void roller(colorType rollerColor){
-  Intake1.spin(reverse, 30, pct);
-  Intake2.spin(reverse, 30, pct);
+  Intake1.spin(reverse, 25, pct);
+  Intake2.spin(reverse, 25, pct);
   waitUntil(isRollerScored(rollerColor));
   Intake1.stop(coast);
   Intake2.stop(coast);
