@@ -22,16 +22,16 @@ void drive() {
 
 void slowTurn(){
   if (Controller1.ButtonY.pressing()){
-    LFM.spin(reverse, 15, rpm);
-    LBM.spin(reverse, 15, rpm);
-    RFM.spin(fwd, 15, rpm);
-    RBM.spin(fwd, 15, rpm);
+    LFM.spin(reverse, 25, rpm);
+    LBM.spin(reverse, 25, rpm);
+    RFM.spin(fwd, 25, rpm);
+    RBM.spin(fwd, 25, rpm);
   }
   else if (Controller1.ButtonA.pressing()){
-    LFM.spin(fwd, 15, rpm);
-    LBM.spin(fwd, 15, rpm);
-    RFM.spin(reverse, 15, rpm);
-    RBM.spin(reverse, 15, rpm);
+    LFM.spin(fwd, 25, rpm);
+    LBM.spin(fwd, 25, rpm);
+    RFM.spin(reverse, 25, rpm);
+    RBM.spin(reverse, 25, rpm);
   }
 }
 
@@ -75,12 +75,12 @@ void intake(){
 }
 
 bool flywheelActive = false;
-int flywheelPower = 500;
+int flywheelPower = 490;
 
 void flywheel(){
   //Change Power Presets
   if (Controller1.ButtonUp.pressing()) {
-    flywheelPower = 500;
+    flywheelPower = 490;
   }
   else if (Controller1.ButtonDown.pressing()) {
     flywheelPower = 460;
