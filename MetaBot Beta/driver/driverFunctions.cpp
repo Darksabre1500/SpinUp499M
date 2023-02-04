@@ -20,6 +20,21 @@ void drive() {
   RBM.spin(fwd, numCutoff(jValuesRBM, 100), pct);     
 } 
 
+void slowTurn(){
+  if (Controller1.ButtonY.pressing()){
+    LFM.spin(reverse, 25, rpm);
+    LBM.spin(reverse, 25, rpm);
+    RFM.spin(fwd, 25, rpm);
+    RBM.spin(fwd, 25, rpm);
+  }
+  else if (Controller1.ButtonA.pressing()){
+    LFM.spin(fwd, 25, rpm);
+    LBM.spin(fwd, 25, rpm);
+    RFM.spin(reverse, 25, rpm);
+    RBM.spin(reverse, 25, rpm);
+  }
+}
+
 void brakeWheels() {
   if (LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0 && LFM.power() == 0){
     LFM.stop(brake);
@@ -56,12 +71,12 @@ void intake(){
 }
 
 bool flywheelActive = false;
-int flywheelPower = 500;
+int flywheelPower = 490;
 
 void flywheel(){
   //Change Power Presets
   if (Controller1.ButtonUp.pressing()) {
-    flywheelPower = 500;
+    flywheelPower = 490;
   }
   else if (Controller1.ButtonDown.pressing()) {
     flywheelPower = 460;
