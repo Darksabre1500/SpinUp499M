@@ -56,7 +56,11 @@ void callAuton(){
 } 
 
 void intake(){
-  if (Controller1.ButtonR1.pressing()){
+  if (Controller1.ButtonR1.pressing() && Controller1.ButtonR2.pressing()){
+    Intake1.spin(fwd, 60, pct);
+    Intake2.spin(fwd, 60, pct);
+  }
+  else if (Controller1.ButtonR1.pressing()){
     Intake1.spin(fwd, 100, pct);
     Intake2.spin(fwd, 100, pct);
   }
