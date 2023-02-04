@@ -83,7 +83,7 @@ void flywheel(){
     flywheelPower = 500;
   }
   else if (Controller1.ButtonDown.pressing()) {
-    flywheelPower = 480;
+    flywheelPower = 470;
   }
   //Increment/Decrement Power
   else if (Controller1.ButtonLeft.pressing()) {
