@@ -22,16 +22,16 @@ void drive() {
 
 void slowTurn(){
   if (Controller1.ButtonY.pressing()){
-    LFM.spin(reverse, 25, rpm);
-    LBM.spin(reverse, 25, rpm);
-    RFM.spin(fwd, 25, rpm);
-    RBM.spin(fwd, 25, rpm);
+    LFM.spin(reverse, 20, rpm);
+    LBM.spin(reverse, 20, rpm);
+    RFM.spin(fwd, 20, rpm);
+    RBM.spin(fwd, 20, rpm);
   }
   else if (Controller1.ButtonA.pressing()){
-    LFM.spin(fwd, 25, rpm);
-    LBM.spin(fwd, 25, rpm);
-    RFM.spin(reverse, 25, rpm);
-    RBM.spin(reverse, 25, rpm);
+    LFM.spin(fwd, 20, rpm);
+    LBM.spin(fwd, 20, rpm);
+    RFM.spin(reverse, 20, rpm);
+    RBM.spin(reverse, 20, rpm);
   }
 }
 
