@@ -76,10 +76,10 @@ int flywheelPower = 490;
 void flywheel(){
   //Change Power Presets
   if (Controller1.ButtonUp.pressing()) {
-    flywheelPower = 490;
+    flywheelPower = 500;
   }
   else if (Controller1.ButtonDown.pressing()) {
-    flywheelPower = 460;
+    flywheelPower = 480;
   }
   //Increment/Decrement Power
   else if (Controller1.ButtonLeft.pressing()) {
