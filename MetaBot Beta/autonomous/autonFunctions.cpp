@@ -187,7 +187,7 @@ void roller(colorType rollerColor){
 
 void roller(){
   Intake1.resetPosition();
-  while(std::abs(Intake1.position(degrees)) < 90){
+  while(std::abs(Intake1.position(degrees)) < 100){
   Intake1.spin(reverse, 25, pct);
   Intake2.spin(reverse, 25, pct);
   }
