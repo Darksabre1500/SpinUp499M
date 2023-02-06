@@ -27,7 +27,6 @@ motor Intake2 = motor(PORT6, ratio18_1, false);
 digital_out Flicker = digital_out(Brain.ThreeWirePort.A);
 rotation EncoderS = rotation(PORT20, true);
 digital_out Endgame = digital_out(Brain.ThreeWirePort.B);
-distance Distance = distance(PORT12);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
