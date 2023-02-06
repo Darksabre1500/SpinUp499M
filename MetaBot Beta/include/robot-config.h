@@ -27,7 +27,6 @@ extern motor Intake2;
 extern digital_out Flicker;
 extern rotation EncoderS;
 extern digital_out Endgame;
-extern distance Distance;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
