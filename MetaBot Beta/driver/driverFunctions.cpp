@@ -76,8 +76,10 @@ void intake(){
 
 bool flywheelActive = false;
 int flywheelPower = 490;
+PIDClass FlywheelPID(0.02, 0, 0);
 
 void flywheel(){
+  
   //Change Power Presets
   if (Controller1.ButtonUp.pressing()) {
     flywheelPower = 500;
@@ -93,31 +95,41 @@ void flywheel(){
     flywheelPower += 10;
   }
 
-  //Toggle Start Flywheel
-  if (Controller1.ButtonL1.pressing() && !flywheelActive){
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
+  if (!flywheelActive && Controller1.ButtonL1.pressing()){
+    Flywheel1.spin(fwd, 600, rpm);
+    Flywheel2.spin(fwd, 600, rpm);
     waitUntil(!Controller1.ButtonL1.pressing());
     flywheelActive = true;
   }
-  //Toggle Stop Flywheel
-  else if (Controller1.ButtonL1.pressing() && flywheelActive) {
-    Flywheel1.stop(coast);
-    Flywheel2.stop(coast);
-    waitUntil(!Controller1.ButtonL1.pressing());
-    flywheelActive = false;
-  }
-  //Update Flywheel Power
-  else if (flywheelActive){
-    Flywheel1.spin(fwd, flywheelPower, rpm);
-    Flywheel2.spin(fwd, flywheelPower, rpm);
-  }
 
-  //Update Power Readout
-  Controller1.Screen.clearLine(1);
-  Controller1.Screen.setCursor(1,0);
-  Controller1.Screen.print("Flywheel Speed: ");
-  Controller1.Screen.print("%d", flywheelPower);
+  if(flywheelActive){
+    if (Controller1.ButtonL1.pressing()) {
+      Flywheel1.stop(coast);
+      Flywheel2.stop(coast);
+      waitUntil(!Controller1.ButtonL1.pressing());
+      flywheelActive = false;
+    }
+    else if (flywheelPower - avgRPM() < 100) {
+      FlywheelPID.updatePID(flywheelPower - avgRPM(), 11 - FlywheelPID.getOutput());
+      Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(flywheelPower), volt);
+      Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(flywheelPower), volt);
+    }
+  }
+}
+
+void flywheelFeedback(){
+  if (flywheelActive){
+    //Update Power Readout
+    Controller1.Screen.clearLine(1);
+    Controller1.Screen.setCursor(1,0);
+    Controller1.Screen.print("Flywheel Speed: ");
+    Controller1.Screen.print("%d", flywheelPower);
+
+    //Vibrate Controller
+    if (std::abs(avgRPM() - flywheelPower)){
+      Controller1.rumble(" - ");
+    }
+  }
 }
 
 void flicker(){

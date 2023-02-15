@@ -1,28 +1,20 @@
 #include "vex.h"
 using namespace std;
 
-PIDClass::PIDClass(double constP){
-  kP = constP;
-  kI = 0;
-  kD = 0;
-}
-
-PIDClass::PIDClass(double constP, double constI){
-  kP = constP;
-  kI = constI;
-  kD = 0;
+PIDClass::PIDClass(){
+  P = 1;
+  I = 0;
+  D = 0;
 }
 
 PIDClass::PIDClass(double constP, double constI, double constD){
-  kP = constP;
-  kI = constI;
-  kD = constD;
+  P = constP;
+  I = constI;
+  D = constD;
 }
 
-void PIDClass::PID(double error, double powLimit) 
+void PIDClass::updatePID(double error, double outputLimit) 
 {
-  double maxValue = powLimit;
-
   proportional = error;
 
 	//Begin summing the errors into the integral term if the error is below a threshold,
@@ -37,17 +29,15 @@ void PIDClass::PID(double error, double powLimit)
 	previous_error = error;
 
 	//Combine all the parts of the PID function into the PID algorithm and return the value.
-  proportionalFinal = kP * proportional;
-  integralFinal = kI * integral;
-  derivativeFinal = kD * derivative;
+  proportionalFinal = P * proportional;
+  integralFinal = I * integral;
+  derivativeFinal = D * derivative;
 
-  finalSpeed = numCutoff(proportionalFinal + integralFinal + derivativeFinal, maxValue);
+  finalOutput = numCutoff(proportionalFinal + integralFinal + derivativeFinal, outputLimit);
 }
 
-void PIDClass::PID(double error, double powLimit, double iLimit) 
+void PIDClass::updatePID(double error, double outputLimit, double iLimit) 
 {
-  double maxValue = powLimit;
-
   proportional = error;
 
 	//Begin summing the errors into the integral term if the error is below a threshold,
@@ -67,20 +57,29 @@ void PIDClass::PID(double error, double powLimit, double iLimit)
 	previous_error = error;
 
 	//Combine all the parts of the PID function into the PID algorithm and return the value.
-  proportionalFinal = kP * proportional;
-  integralFinal = kI * integral;
-  derivativeFinal = kD * derivative;
+  proportionalFinal = P * proportional;
+  integralFinal = I * integral;
+  derivativeFinal = D * derivative;
 
-  finalSpeed = numCutoff(proportionalFinal + integralFinal + derivativeFinal, maxValue);
+  finalOutput = numCutoff(proportionalFinal + integralFinal + derivativeFinal, outputLimit);
 }
 
-void PIDClass::sPrint(){
-  cout << "Speed: " << finalSpeed << endl; 
+template <typename T> std::string to_string(const T& n){
+  std::ostringstream stm ;
+  stm << n ;
+  return stm.str();
 }
 
-void PIDClass::fullPrint(){
-  cout << "Error: " << proportional << " | raw integ: " << integral << " | raw deriv: " << derivative << endl;
-  cout << "P: " << proportionalFinal << " | I: " << integralFinal << " | D: " << derivativeFinal << endl;
-  cout << "Speed: " << finalSpeed << endl; 
-  cout << endl;
+string PIDClass::toStr(){
+   return "Output: " + to_string(finalOutput) + "\n"; 
+}
+
+string PIDClass::toStrM(){
+   return "P: " + to_string(P) + " | I: " + to_string(I) + " | D: " + to_string(D) + "\n";
+}
+
+string PIDClass::toStrL(){
+  return "Output: " + to_string(proportional) + " | raw integ: " + to_string(integral) + " | raw deriv: " + to_string(derivative)
+   + "\nP: " + to_string(proportionalFinal) + " | I: " + to_string(integralFinal) + " | D: " + to_string(derivativeFinal)
+   + "\nSpeed: " + to_string(finalOutput) + "\n";
 }
