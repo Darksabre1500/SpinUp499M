@@ -71,3 +71,15 @@ double angleWrap(double angle, angleType aType){
   }  
   return angle;
 }
+
+double avgRPM(){
+  return (Flywheel1.velocity(rpm) + Flywheel2.velocity(rpm)) / 2;
+}
+
+double avgVolts(){
+  return (Flywheel1.voltage(volt) + Flywheel2.voltage(volt)) / 2;
+}
+
+double RPMtoVolts(double RPM){
+  return 0.023119303113348973 * RPM - 0.7583755776231895;
+}
