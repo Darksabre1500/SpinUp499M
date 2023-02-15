@@ -18,6 +18,9 @@ double radToDeg(double radian);
 double angleDiff(double actual, double target, angleType aType);
 double angleDiffDir(double actual, double target);
 double angleWrap(double angle, angleType aType);
+double avgRPM();
+double avgVolts();
+double RPMtoVolts(double RPM);
 
 //Classes
 class TimeoutClock
