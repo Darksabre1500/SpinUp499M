@@ -21,6 +21,7 @@ double angleWrap(double angle, angleType aType);
 double avgRPM();
 double avgVolts();
 double RPMtoVolts(double RPM);
+void flywheelFeedback();
 
 //Classes
 class TimeoutClock
