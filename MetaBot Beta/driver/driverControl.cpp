@@ -18,6 +18,7 @@ void usercontrol(void) {
     flywheel();
     flicker();
     endgame();
+    flywheelFeedback();
 
     /*if (Controller1.ButtonA.pressing()){
       aimbot(BLUE);
