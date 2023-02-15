@@ -126,7 +126,7 @@ void flywheelFeedback(){
     Controller1.Screen.print("%d", flywheelPower);
 
     //Vibrate Controller
-    if (std::abs(avgRPM() - flywheelPower)){
+    if (std::abs(avgRPM() - flywheelPower) < 10){
       Controller1.rumble(" - ");
     }
   }
