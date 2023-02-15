@@ -1,11 +1,13 @@
+#include <string>
+
 #ifndef PID_h
 #define PID_h
 
 class PIDClass {
 private:
-  double kP = 0;
-  double kI = 0;
-  double kD = 0;
+  double P = 0;
+  double I = 0;
+  double D = 0;
 
   double proportional = 0;
   double integral = 0;
@@ -16,23 +18,50 @@ private:
   double derivativeFinal = 0;
   
   double previous_error = 0;
-  double finalSpeed = 0;
+  double finalOutput = 0;
 
 public: 
   void PID(double error, double powLimit);
   void PID(double error, double powLimit, double iLimit);
 
-  PIDClass(double constP);
-  PIDClass(double constP, double constI);
+  PIDClass();
   PIDClass(double constP, double constI, double constD);
 
-  double getPow(){
-    return finalSpeed;
+  void updatePID(double error, double outputLimit);
+  void updatePID(double error, double outputLimit, double iLimit);
+
+  void setP(double P){
+    this->P = P;
+  }
+
+  void setI(double I){
+    this->I = I;
+  }
+
+  void setD(double D){
+    this->D = D;
+  }
+
+  double getP(){
+    return P;
+  }
+
+  double getI(){
+    return I;
+  }
+
+  double getD(){
+    return D;
+  }
+
+  double getOutput(){
+    return finalOutput;
   }
 
   //Add outputs for debugging
-  void sPrint();
-  void fullPrint();
+  std::string toStr();
+  std::string toStrM();
+  std::string toStrL();
 
 };
 

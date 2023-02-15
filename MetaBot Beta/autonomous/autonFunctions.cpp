@@ -17,14 +17,14 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
     targetY += odom.getY();
   }
   TimeoutClock timer;
-  PIDClass Speed(30);
+  PIDClass Speed(30, 0 ,0);
 
   while(vectorLength(targetX, targetY) > 2)
   {
     //Update PID Controller
     Speed.PID(vectorLength(targetX, targetY), 200);
     //Update Motor Speeds
-    omniController(vectorGAngle(targetX, targetY), Speed.getPow());
+    omniController(vectorGAngle(targetX, targetY), Speed.getOutput());
     
     LFM.spin(fwd, Mfl, rpm);
     LBM.spin(fwd, Mbl, rpm);
@@ -47,7 +47,7 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
 void turnTo(double targetAngle, double timeout)
 {
   TimeoutClock timer;
-  PIDClass Speed(4);
+  PIDClass Speed(4, 0, 0);
 
   while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 1)
   {
@@ -55,10 +55,10 @@ void turnTo(double targetAngle, double timeout)
     Speed.PID(turnDistance(targetAngle), 200); 
 
     
-    LFM.spin(reverse, Speed.getPow(), rpm);
-    LBM.spin(reverse, Speed.getPow(), rpm);
-    RFM.spin(fwd, Speed.getPow(), rpm);
-    RBM.spin(fwd, Speed.getPow(), rpm);
+    LFM.spin(reverse, Speed.getOutput(), rpm);
+    LBM.spin(reverse, Speed.getOutput(), rpm);
+    RFM.spin(fwd, Speed.getOutput(), rpm);
+    RBM.spin(fwd, Speed.getOutput(), rpm);
 
     if (timer.getTime() > timeout)
       break;
