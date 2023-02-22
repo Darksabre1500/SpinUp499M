@@ -7,7 +7,7 @@ using namespace vex;
 int tempuatureDisplay();
 int brainDebug();
 int controllerDebug();
-void RPMTask( void *arg );
+void RPMTask(void *arg);
 int lineTask(void *arg);
 
 #endif
