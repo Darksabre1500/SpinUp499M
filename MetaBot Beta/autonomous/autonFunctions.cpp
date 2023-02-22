@@ -76,6 +76,7 @@ void flywheel(int pow){
   Flywheel1.spin(fwd, 600, rpm);
   Flywheel2.spin(fwd, 600, rpm);
   waitUntil(pow - avgRPM() < 100);
+
   while(disksShot < 2){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
@@ -85,14 +86,22 @@ void flywheel(int pow){
     if (std::abs(avgRPM() - pow) < 10)
       count++;
     
-    if (count == 30){
+    if (count == 10){
       shootDisk();
       count = 0;
       disksShot++;
     }
   }
+
+  TimeoutClock timer;
+
+  while(timer.getTime() < 0.4){
+    FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
+    Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    wait(1, msec);
+  }
   
-  wait(100, msec);
   Flywheel1.stop(coast);
   Flywheel2.stop(coast);
 }
