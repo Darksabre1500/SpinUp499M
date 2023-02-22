@@ -78,8 +78,8 @@ void flywheel(int pow){
   waitUntil(pow - avgRPM() < 100);
   while(disksShot < 2){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
-    Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(flywheelPower), volt);
-    Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(flywheelPower), volt);
+    Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     wait(10, msec);
     
     if (std::abs(avgRPM() - pow) < 10)
