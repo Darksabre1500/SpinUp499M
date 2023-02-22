@@ -68,6 +68,36 @@ void turnTo(double targetAngle, double timeout)
   stopMotors();
 }
 
+void flywheel(int pow){  
+  int disksShot = 0;
+  int count = 0;
+  PIDClass FlywheelPID(0.02, 0, 0);
+  
+  Flywheel1.spin(fwd, 600, rpm);
+  Flywheel2.spin(fwd, 600, rpm);
+  waitUntil(pow - avgRPM() < 100);
+  while(disksShot < 2){
+    FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
+    Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    wait(10, msec);
+    
+    if (std::abs(avgRPM() - pow) < 10)
+      count++;
+    
+    if (count == 30){
+      shootDisk();
+      count = 0;
+      disksShot++;
+    }
+  }
+  
+  wait(100, msec);
+  Flywheel1.stop(coast);
+  Flywheel2.stop(coast);
+}
+  
+
 void flywheel(bool turOn, int pow){
   if (turOn){
     Flywheel1.spin(fwd, pow, rpm);
