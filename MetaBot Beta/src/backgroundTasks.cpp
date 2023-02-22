@@ -105,7 +105,7 @@ int lineTask(void *arg){
   graph *g = static_cast<graph *>(arg);
 
   while(1) {
-    g->addPoint(0, 240 - static_cast<int>((490/600) * 240));
+    g->addPoint(0, 240 - static_cast<int>((490.0/600) * 240));
     this_thread::sleep_for(10);
   }
 }
