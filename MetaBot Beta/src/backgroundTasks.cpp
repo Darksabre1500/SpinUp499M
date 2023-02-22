@@ -87,3 +87,26 @@ int controllerDebug(){
   }
   return 0;
 }
+
+void RPMTask( void *arg ) {
+  if( arg == NULL ) return;
+
+  graph *g = static_cast<graph *>(arg);
+
+  while (1){
+    g->addPoint(1, 240 - static_cast<int>((avgRPM()/600) * 240));
+    this_thread::sleep_for(10);
+  }
+}
+
+int lineTask(void *arg){
+  if( arg == NULL ) return 0;
+
+  graph *g = static_cast<graph *>(arg);
+
+  while(1) {
+    g->addPoint(0, 240 - static_cast<int>((490/600) * 240));
+
+    this_thread::sleep_for(10);
+  }
+}
