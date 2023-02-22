@@ -127,9 +127,4 @@ class graph {
       }
 };
 
-int sinTask1( void *arg );
-int sinTask2( void *arg );
-int cosTask1( void *arg );
-int triangleTask1( void *arg );
-
 #endif
