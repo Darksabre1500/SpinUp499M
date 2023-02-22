@@ -22,7 +22,7 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
   while(vectorLength(targetX, targetY) > 2)
   {
     //Update PID Controller
-    Speed.PID(vectorLength(targetX, targetY), 200);
+    Speed.updatePID(vectorLength(targetX, targetY), 200);
     //Update Motor Speeds
     omniController(vectorGAngle(targetX, targetY), Speed.getOutput());
     
@@ -52,7 +52,7 @@ void turnTo(double targetAngle, double timeout)
   while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 1)
   {
     //Update PID Controller
-    Speed.PID(turnDistance(targetAngle), 200); 
+    Speed.updatePID(turnDistance(targetAngle), 200); 
 
     
     LFM.spin(reverse, Speed.getOutput(), rpm);
