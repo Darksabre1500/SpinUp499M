@@ -11,6 +11,7 @@ using namespace vex;
   void goTo(double target_X, double target_Y, double timeout, coordType coordinates);
   void turnTo(double target_angle, double timeout);
   void intake(bool turnOn, directionType dir);
+  void flywheel(int pow);
   void flywheel(bool turOn, int pow);
   void shootDisk();
   void move(double inches, directionType dir, double timeout);
