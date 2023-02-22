@@ -45,8 +45,10 @@ int main() {
   Competition.bStopTasksBetweenModes = false;  
 
   // Background Processes
-
+  
   graph g( 2, 0, 0);
+  g.setColor(0, vex::color::white );
+  g.setColor(1, vex::color::red );
   thread t1(lineTask, static_cast<void *>(&g));
   thread t2(RPMTask, static_cast<void *>(&g));
 
