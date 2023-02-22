@@ -117,6 +117,8 @@ void flywheel(){
   }
 }
 
+bool reachedPower = false;
+
 void flywheelFeedback(){
   if (flywheelActive){
     //Update Power Readout
@@ -126,8 +128,12 @@ void flywheelFeedback(){
     Controller1.Screen.print("%d", flywheelPower);
 
     //Vibrate Controller
-    if (std::abs(avgRPM() - flywheelPower) < 10){
+    if (std::abs(avgRPM() - flywheelPower) < 10 && !reachedPower){
       Controller1.rumble(" - ");
+      reachedPower = true;
+    }
+    else if (std::abs(avgRPM() - flywheelPower) > 10 && reachedPower){
+      reachedPower = false;
     }
   }
 }
