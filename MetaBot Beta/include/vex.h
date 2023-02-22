@@ -39,6 +39,7 @@
 #include "directionControl.h"
 #include "backgroundTasks.h"
 #include "vision.h"
+#include "graphing.h"
 
 //User Added Stuff---------------------------------------------------------------
   extern competition Competition;
