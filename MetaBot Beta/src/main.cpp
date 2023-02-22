@@ -45,19 +45,30 @@ int main() {
   Competition.bStopTasksBetweenModes = false;  
 
   // Background Processes
+
+  graph g( 2, 0, 0);
+  thread t1(lineTask, static_cast<void *>(&g));
+  thread t2(RPMTask, static_cast<void *>(&g));
+
+  /*
   Brain.Screen.clearScreen();
   task temps(tempuatureDisplay);
   task brainTB(brainDebug);
   task controllerTB(controllerDebug);
   task updateOdometry(odometry);
+  */
 
   Flicker.set(false);
   EncoderL.resetRotation();
   EncoderR.resetRotation();
   EncoderS.resetPosition();
 
+  
+
   // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
   }
+
+  
 }
