@@ -46,19 +46,21 @@ int main() {
 
   // Background Processes
   
+  /*
   graph g( 2, 0, 0);
   g.setColor(0, vex::color::white );
   g.setColor(1, vex::color::red );
   thread t1(lineTask, static_cast<void *>(&g));
   thread t2(RPMTask, static_cast<void *>(&g));
+  */
 
-  /*
+  
   Brain.Screen.clearScreen();
   task temps(tempuatureDisplay);
   task brainTB(brainDebug);
   task controllerTB(controllerDebug);
   task updateOdometry(odometry);
-  */
+  
 
   Flicker.set(false);
   EncoderL.resetRotation();

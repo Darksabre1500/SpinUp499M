@@ -21,8 +21,6 @@ private:
   double finalOutput = 0;
 
 public: 
-  void PID(double error, double powLimit);
-  void PID(double error, double powLimit, double iLimit);
 
   PIDClass();
   PIDClass(double constP, double constI, double constD);
