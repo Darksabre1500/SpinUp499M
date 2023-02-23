@@ -16,7 +16,7 @@ void autonomous(void) {
   wait(0.5, sec);
   
   //Roller
-  /*strafe(1.5, right, 0.75);
+  strafe(1.5, right, 0.75);
   turnTo(70, 1);
   move(15, reverse, 0.75);
   odom.resetAngle();
@@ -30,5 +30,5 @@ void autonomous(void) {
   wait(0.25, sec);
   move(7.5, fwd, 2);
   wait(0.25, sec);
-  roller();*/
+  roller();
 } 
