@@ -19,7 +19,7 @@ void PIDClass::updatePID(double error, double outputLimit)
 
 	//Begin summing the errors into the integral term if the error is below a threshold,
 	//and reset it if not. This is to prevent the integral from growing too large.
-		integral += error;
+	integral += error;
 
 	//Calculate the derivative by finding the change between the current error and
 	//last update's error
