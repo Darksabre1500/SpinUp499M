@@ -49,10 +49,11 @@ void turnTo(double targetAngle, double timeout)
   TimeoutClock timer;
   PIDClass Speed(4, 0, 0);
 
-  while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 1)
+  while(angleDiff(odom.getAngle(DEGREES), targetAngle, DEGREES) > 2)
   {
     //Update PID Controller
     Speed.updatePID(turnDistance(targetAngle), 200); 
+    std::cout << Speed.getOutput() << "\n";
 
     
     LFM.spin(reverse, Speed.getOutput(), rpm);
@@ -63,7 +64,7 @@ void turnTo(double targetAngle, double timeout)
     if (timer.getTime() > timeout)
       break;
 
-    wait(5, msec);
+    wait(2, msec);
   }
   stopMotors();
 }
@@ -95,7 +96,7 @@ void flywheel(int pow){
 
   TimeoutClock timer;
 
-  while(timer.getTime() < 0.4){
+  while(timer.getTime() < 0.75){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
