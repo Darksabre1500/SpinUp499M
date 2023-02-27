@@ -7,7 +7,7 @@ void stopMotors(){
   RBM.stop(brake);
 }
 
-//This function moves the bot to the specified coordinates. The bot will always start at 0, 0 on startup. 
+/*//This function moves the bot to the specified coordinates. The bot will always start at 0, 0 on startup. 
 //If it times out, it will move on to the next function even if it still hasn't finished. 
 //Units are in inches and seconds respectivley.
 void goTo(double targetX, double targetY, double timeout, coordType coordinates)
@@ -39,7 +39,7 @@ void goTo(double targetX, double targetY, double timeout, coordType coordinates)
     wait(5, msec);
   }
   stopMotors();
-}
+}*/
 
 //This function turns the bot to the specified angle. The bot will start at 90 Degrees on startup.
 //It will always take the shortest route to the target angle.
@@ -68,6 +68,8 @@ void turnTo(double targetAngle, double timeout)
   stopMotors();
 }
 
+//Spins the flywheel up to desired RPM and then shoots 2 disks.
+//Units are in RPM.
 void flywheel(int pow){  
   int disksShot = 0;
   int count = 0;
