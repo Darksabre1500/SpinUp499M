@@ -99,7 +99,7 @@ void flywheel(int pow){
   Flywheel2.stop(coast);
 }
   
-
+//Toggles flywheel on or off depending on turnOn value
 void flywheel(bool turOn, int pow){
   if (turOn){
     Flywheel1.spin(fwd, pow, rpm);
@@ -117,6 +117,8 @@ void shootDisk(){
   Flicker.set(false);
 }
 
+//Moves forwards or backwards depending on dir value
+//Dir can be: fwd, forward, reverse
 void move(double inches, directionType dir, double timeout){
   double init = degToIn(EncoderL.position(deg), 2.75);
   TimeoutClock timer;
@@ -157,6 +159,8 @@ void move(double inches, directionType dir, double timeout){
     stopMotors();
 }
 
+//Moves left or right depending on dir value
+//Dir can be: left, right
 void strafe(double inches, turnType dir, double timeout){
   double init = degToIn(EncoderS.position(deg), 2.75);
   TimeoutClock timer;
@@ -198,6 +202,8 @@ void strafe(double inches, turnType dir, double timeout){
   stopMotors();
 }
 
+//Toggles intake based on turn on value
+//Dir can be: fwd, forward, reverse
 void intake(bool turnOn, directionType dir){
   if (turnOn){
     Intake1.spin(dir, 100, pct);
@@ -217,6 +223,7 @@ void roller(colorType rollerColor){
   Intake2.stop(coast);
 }
 
+//Rolls roller to right color
 void roller(){
   Intake1.resetPosition();
   while(std::abs(Intake1.position(degrees)) < 90){
