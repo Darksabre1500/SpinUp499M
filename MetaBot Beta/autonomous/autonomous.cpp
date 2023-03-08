@@ -14,7 +14,7 @@ void autonomous(void) {
   //7 cm setup
 
   //Flywheel
-  flywheel(500);
+  flywheel(495);
   wait(0.5, sec);
   
   //Roller
@@ -26,12 +26,12 @@ void autonomous(void) {
   wait(0.1, sec);
   turnTo(0, 2);
   wait(0.1, sec);
-  move(24, fwd, 2);
+  move(24.5, fwd, 2);
   wait(0.1, sec);
   turnTo(270, 2);
   wait(0.1, sec);
   move(8, fwd, 1);
-  wait(0.1, sec);
+  wait(0.3, sec);
   roller();
 
 } 
