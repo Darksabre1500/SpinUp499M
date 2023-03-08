@@ -12,23 +12,25 @@
 
 void autonomous(void) {  
   //Flywheel
-  flywheel(490);
+  flywheel(495);
   wait(0.5, sec);
   
   //Roller
   strafe(1.5, right, 0.75);
-  turnTo(70, 1);
+  turnTo(73, 1);
   move(15, reverse, 0.75);
+  wait(0.1, sec);
   odom.resetAngle();
+  wait(0.1, sec);
   move(6, fwd, 2);
+  wait(0.1, sec);
+  turnTo(180, 2);
+  wait(0.1, sec);
+  move(10, fwd, 2);
   wait(0.1, sec);
   turnTo(270, 2);
   wait(0.1, sec);
-  strafe(15, right, 2);
-  wait(0.1, sec);
-  turnTo(267, 2);
-  wait(0.1, sec);
-  move(6, fwd, 1);
-  wait(0.1, sec);
+  move(7, fwd, 1);
+  wait(0.2, sec);
   roller();
 } 

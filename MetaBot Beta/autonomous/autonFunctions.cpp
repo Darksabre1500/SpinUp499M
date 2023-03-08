@@ -73,8 +73,8 @@ void turnTo(double targetAngle, double timeout)
 //Units are in RPM.
 void flywheel(int pow){  
   int disksShot = 0;
-  int count = 0;
-  PIDClass FlywheelPID(0.02, 0, 0);
+  TimeoutClock timer;
+  PIDClass FlywheelPID(0.05, 0, 0);
   
   Flywheel1.spin(fwd, 600, rpm);
   Flywheel2.spin(fwd, 600, rpm);
@@ -86,19 +86,22 @@ void flywheel(int pow){
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     wait(10, msec);
     
-    if (std::abs(avgRPM() - pow) < 10)
-      count++;
+    if (std::abs(avgRPM() - pow) > 20) {
+      timer.resetTime();
+    }
     
-    if (count == 10){
+    if (timer.getTime() > 0.15){
       shootDisk();
-      count = 0;
+      Flywheel1.spin(fwd, 600, rpm);
+      Flywheel2.spin(fwd, 600, rpm);
+      waitUntil(pow - avgRPM() < 50);
       disksShot++;
     }
   }
 
-  TimeoutClock timer;
+  TimeoutClock timer2;
 
-  while(timer.getTime() < 0.75){
+  while(timer2.getTime() < 0.5){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
