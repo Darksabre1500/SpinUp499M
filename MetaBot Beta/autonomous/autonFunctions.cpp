@@ -53,8 +53,6 @@ void turnTo(double targetAngle, double timeout)
   {
     //Update PID Controller
     Speed.updatePID(turnDistance(targetAngle), 200); 
-    std::cout << Speed.getOutput() << "\n";
-
     
     LFM.spin(reverse, Speed.getOutput(), rpm);
     LBM.spin(reverse, Speed.getOutput(), rpm);
@@ -74,6 +72,7 @@ void turnTo(double targetAngle, double timeout)
 void flywheel(int pow){  
   int disksShot = 0;
   TimeoutClock timer;
+  TimeoutClock timeout;
   PIDClass FlywheelPID(0.03, 0, 0);
   
   Flywheel1.spin(fwd, 600, rpm);
@@ -91,20 +90,25 @@ void flywheel(int pow){
       timer.resetTime();
     }
     
-    if (timer.getTime() > 0.4){
+    if (timer.getTime() > 0.2){
       shootDisk();
       wait(0.75, sec);
       Flywheel1.spin(fwd, 600, rpm);
       Flywheel2.spin(fwd, 600, rpm);
-      waitUntil(pow - avgRPM() < 5);
+      waitUntil(pow - avgRPM() < 0);
       disksShot++;
+      //std::cout << "Test";
       timer.resetTime();
+    }
+
+    if (timeout.getTime() > 6.75){
+      break;
     }
   }
 
-  TimeoutClock timer2;
+  timer.resetTime();
 
-  while(timer2.getTime() < 0.5){
+  while(timer.getTime() < 0.5){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);

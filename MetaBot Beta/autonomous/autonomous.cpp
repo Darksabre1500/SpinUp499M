@@ -21,16 +21,14 @@ void autonomous(void) {
   move(15, reverse, 0.75);
   wait(0.1, sec);
   odom.resetAngle();
-  wait(0.1, sec);
   move(6, fwd, 2);
   wait(0.1, sec);
   turnTo(180, 2);
   wait(0.1, sec);
-  move(10, fwd, 2);
+  move(12, fwd, 2);
   wait(0.1, sec);
   turnTo(270, 2);
   wait(0.1, sec);
   move(7, fwd, 1);
-  wait(0.2, sec);
   roller();
 } 
