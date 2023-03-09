@@ -74,28 +74,31 @@ void turnTo(double targetAngle, double timeout)
 void flywheel(int pow){  
   int disksShot = 0;
   TimeoutClock timer;
-  PIDClass FlywheelPID(0.05, 0, 0);
+  PIDClass FlywheelPID(0.03, 0, 0);
   
   Flywheel1.spin(fwd, 600, rpm);
   Flywheel2.spin(fwd, 600, rpm);
-  waitUntil(pow - avgRPM() < 100);
+  waitUntil(pow - avgRPM() < 5);
 
+  timer.resetTime();
   while(disksShot < 2){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
-    wait(10, msec);
+    wait(5, msec);
     
-    if (std::abs(avgRPM() - pow) > 20) {
+    if (std::abs(avgRPM() - pow) > 30) {
       timer.resetTime();
     }
     
-    if (timer.getTime() > 0.15){
+    if (timer.getTime() > 0.4){
       shootDisk();
+      wait(0.75, sec);
       Flywheel1.spin(fwd, 600, rpm);
       Flywheel2.spin(fwd, 600, rpm);
-      waitUntil(pow - avgRPM() < 50);
+      waitUntil(pow - avgRPM() < 5);
       disksShot++;
+      timer.resetTime();
     }
   }
 
@@ -238,11 +241,18 @@ void roller(colorType rollerColor){
 
 //Rolls roller to right color
 void roller(){
+  LFM.spin(fwd, 15, rpm);
+  LBM.spin(fwd, 15, rpm);
+  RFM.spin(fwd, 15, rpm);
+  RBM.spin(fwd, 15, rpm);
+
   Intake1.resetPosition();
-  while(std::abs(Intake1.position(degrees)) < 90){
-  Intake1.spin(reverse, 25, pct);
-  Intake2.spin(reverse, 25, pct);
+  while(std::abs(Intake1.position(degrees)) < 75){
+    Intake1.spin(reverse, 40, pct);
+    Intake2.spin(reverse, 40, pct);
+    wait(5, msec);
   }
   Intake1.stop(coast);
   Intake2.stop(coast);
+  stopMotors();
 }
