@@ -70,7 +70,6 @@ void turnTo(double targetAngle, double timeout)
 //Spins the flywheel up to desired RPM and then shoots 2 disks.
 //Units are in RPM.
 void flywheel(int pow){  
-  int disksShot = 0;
   TimeoutClock timer;
   TimeoutClock timeout;
   PIDClass FlywheelPID(0.03, 0, 0);
@@ -80,7 +79,7 @@ void flywheel(int pow){
   waitUntil(pow - avgRPM() < 5);
 
   timer.resetTime();
-  while(disksShot < 2){
+  while(timer.getTime() > 0.2){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
@@ -89,15 +88,26 @@ void flywheel(int pow){
     if (std::abs(avgRPM() - pow) > 30) {
       timer.resetTime();
     }
+
+    if (timeout.getTime() > 6.75){
+      break;
+    }
+  }
+
+  shootDisk();
+  wait(0.75, sec);
+  Flywheel1.spin(fwd, 600, rpm);
+  Flywheel2.spin(fwd, 600, rpm);
+  waitUntil(pow - avgRPM() < -10);
+  timer.resetTime();
+
+  while(timer.getTime() > 0.2){
+    FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
+    Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
+    wait(5, msec);
     
-    if (timer.getTime() > 0.2){
-      shootDisk();
-      wait(0.75, sec);
-      Flywheel1.spin(fwd, 600, rpm);
-      Flywheel2.spin(fwd, 600, rpm);
-      waitUntil(pow - avgRPM() < 0);
-      disksShot++;
-      //std::cout << "Test";
+    if (std::abs(avgRPM() - pow) > 30) {
       timer.resetTime();
     }
 
@@ -106,9 +116,10 @@ void flywheel(int pow){
     }
   }
 
+  shootDisk();
   timer.resetTime();
 
-  while(timer.getTime() < 0.5){
+  while(timer.getTime() < 0.75){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
@@ -249,9 +260,11 @@ void roller(){
   LBM.spin(fwd, 15, rpm);
   RFM.spin(fwd, 15, rpm);
   RBM.spin(fwd, 15, rpm);
+  wait(0.25, sec);
+  stopMotors();
 
   Intake1.resetPosition();
-  while(std::abs(Intake1.position(degrees)) < 75){
+  while(std::abs(Intake1.position(degrees)) < 90){
     Intake1.spin(reverse, 40, pct);
     Intake2.spin(reverse, 40, pct);
     wait(5, msec);

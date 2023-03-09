@@ -25,9 +25,9 @@ void autonomous(void) {
   wait(0.1, sec);
   turnTo(180, 2);
   wait(0.1, sec);
-  move(12, fwd, 2);
+  move(11, fwd, 2);
   wait(0.1, sec);
-  turnTo(270, 2);
+  turnTo(267, 2);
   wait(0.1, sec);
   move(7, fwd, 1);
   roller();
