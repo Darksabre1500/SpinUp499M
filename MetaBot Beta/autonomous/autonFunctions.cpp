@@ -63,7 +63,7 @@ void turnTo(double targetAngle, double timeout)
     if (timer.getTime() > timeout)
       break;
 
-    wait(5, msec);
+    wait(10, msec);
   }
   stopMotors();
 }
@@ -84,7 +84,7 @@ void flywheel(int pow){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
-    wait(5, msec);
+    wait(10, msec);
     
     if (std::abs(avgRPM() - pow) > 30) {
       timer.resetTime();
@@ -124,7 +124,7 @@ void flywheel(int pow){
     FlywheelPID.updatePID(pow - avgRPM(), 11 - FlywheelPID.getOutput());
     Flywheel1.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
     Flywheel2.spin(fwd, FlywheelPID.getOutput() + RPMtoVolts(pow), volt);
-    wait(1, msec);
+    wait(10, msec);
   }
   
   Flywheel1.stop(coast);
@@ -168,7 +168,7 @@ void move(double inches, directionType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -185,7 +185,7 @@ void move(double inches, directionType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
     stopMotors();
@@ -210,7 +210,7 @@ void strafe(double inches, turnType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -227,7 +227,7 @@ void strafe(double inches, turnType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -266,7 +266,7 @@ void roller(){
   while(std::abs(Intake1.position(degrees)) < 90){
     Intake1.spin(reverse, 40, pct);
     Intake2.spin(reverse, 40, pct);
-    wait(5, msec);
+    wait(10, msec);
   }
   Intake1.stop(coast);
   Intake2.stop(coast);

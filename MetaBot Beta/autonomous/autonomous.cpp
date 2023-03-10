@@ -14,7 +14,8 @@ void autonomous(void) {
   //7 cm setup
 
   //Flywheel
-  flywheel(505);
+  flywheel(570);
+  wait(0.5, sec);
   
   //Roller
   strafe(1.5, left, 0.75);
