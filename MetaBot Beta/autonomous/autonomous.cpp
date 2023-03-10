@@ -12,7 +12,7 @@
 
 void autonomous(void) {  
   //Flywheel
-  flywheel(505);
+  flywheel(570);
   wait(0.5, sec);
   
   //Roller
