@@ -225,11 +225,20 @@ void roller(colorType rollerColor){
 
 //Rolls roller to right color
 void roller(){
+  LFM.spin(fwd, 15, rpm);
+  LBM.spin(fwd, 15, rpm);
+  RFM.spin(fwd, 15, rpm);
+  RBM.spin(fwd, 15, rpm);
+  wait(0.25, sec);
+  stopMotors();
+
   Intake1.resetPosition();
-  while(std::abs(Intake1.position(degrees)) < 100){
-  Intake1.spin(reverse, 25, pct);
-  Intake2.spin(reverse, 25, pct);
+  while(std::abs(Intake1.position(degrees)) < 90){
+    Intake1.spin(reverse, 40, pct);
+    Intake2.spin(reverse, 40, pct);
+    wait(10, msec);
   }
   Intake1.stop(coast);
   Intake2.stop(coast);
+  stopMotors();
 }
