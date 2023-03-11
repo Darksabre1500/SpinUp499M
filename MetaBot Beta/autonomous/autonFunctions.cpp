@@ -63,7 +63,7 @@ void turnTo(double targetAngle, double timeout)
     if (timer.getTime() > timeout)
       break;
 
-    wait(5, msec);
+    wait(10, msec);
   }
   stopMotors();
 }
@@ -136,7 +136,7 @@ void move(double inches, directionType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -153,7 +153,7 @@ void move(double inches, directionType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
     stopMotors();
@@ -178,7 +178,7 @@ void strafe(double inches, turnType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -195,7 +195,7 @@ void strafe(double inches, turnType dir, double timeout){
         return;
       }
 
-      wait(5, msec);
+      wait(10, msec);
     }
   }
 
@@ -233,9 +233,9 @@ void roller(){
   stopMotors();
 
   Intake1.resetPosition();
-  while(std::abs(Intake1.position(degrees)) < 90){
-    Intake1.spin(reverse, 40, pct);
-    Intake2.spin(reverse, 40, pct);
+  while(std::abs(Intake1.position(degrees)) < 100){
+    Intake1.spin(reverse, 60, pct);
+    Intake2.spin(reverse, 60, pct);
     wait(10, msec);
   }
   Intake1.stop(coast);
